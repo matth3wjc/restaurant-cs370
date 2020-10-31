@@ -48,6 +48,7 @@ CREATE TABLE `table`
         ON DELETE CASCADE
 );
 
+
 insert into resturant values ("Charlie's", 2), ("Jenny's Patio", 1);
 insert into party (p_name, p_size) values ("Jones", 4), ("mary sue", 3), ("Carl Smithers", 1);
 insert into wait_list values (1, 1), (2, 1);
@@ -66,3 +67,21 @@ select p_name, p_size
     JOIN resturant AS r
 		ON w.rest_id = r.rest_id
 	WHERE rest_name = "Jenny's Patio";
+    
+select * from party;
+
+DROP PROCEDURE IF EXISTS proc_add_party;
+DELIMITER $$
+CREATE PROCEDURE proc_add_party
+(
+	 _rest_id BIGINT,
+    _p_name VARCHAR(30),
+    _p_size int
+)
+BEGIN
+	INSERT INTO party( p_name, p_size) VALUE (_p_name, _p_size);
+    INSERT INTO wait_list VALUE ( LAST_INSERT_ID(), _rest_id);
+END $$
+DELIMITER ;
+
+select * from wait_list;
