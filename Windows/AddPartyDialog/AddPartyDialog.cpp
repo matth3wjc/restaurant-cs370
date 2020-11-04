@@ -1,4 +1,4 @@
-#include "addpartydialog.h"
+#include "AddPartyDialog.h"
 #include "ui_addpartydialog.h"
 #include <iostream>
 

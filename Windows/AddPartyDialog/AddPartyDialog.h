@@ -21,4 +21,4 @@ private slots:
 private:
     Ui::AddPartyDialog *ui;
 };
-#endif // ADDPARTYDIALOG_H
+#endif
