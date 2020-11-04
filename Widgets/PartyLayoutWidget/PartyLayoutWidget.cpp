@@ -22,5 +22,4 @@ PartyLayoutWidget::PartyLayoutWidget(QString inName, int inSize)
     deleteButton.setText("Delete");
     deleteButton.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     addWidget(&deleteButton, 1, 2);
-    //apple
 }

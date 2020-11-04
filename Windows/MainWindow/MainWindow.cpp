@@ -1,7 +1,9 @@
 #include "MainWindow.h"
+#include <QDialog>
 #include "ui_mainwindow.h"
 #include "..\..\Widgets\TableButton\TableButton.h"
 #include "..\..\Widgets\PartyLayoutWidget\PartyLayoutWidget.h"
+#include "../AddPartyDialog/AddPartyDialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,14 +30,17 @@ MainWindow::~MainWindow()
 
 }
 
-
 void MainWindow::on_addToWaitlistButton_clicked()
 {
+    AddPartyDialog addPartyDialog(this);
+    addPartyDialog.exec();
+    /*
     ++numOfParties;
     QString partyName = "Party " + QString::number(numOfParties, 10);
     PartyLayoutWidget* newParty = new PartyLayoutWidget(partyName, 5);
     waitList.push_back(newParty);
     ui->WaitlistScrollAreaContents->addLayout(newParty);
+    */
 }
 
 void MainWindow::on_actionDelete_All_Parties_On_Waitlist_triggered()

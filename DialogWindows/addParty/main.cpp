@@ -1,4 +1,4 @@
-#include "addpartydialog.h"
+#include "AddPartyDialog.h"
 
 #include <QApplication>
 

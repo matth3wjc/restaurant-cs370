@@ -9,17 +9,20 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Windows/AddPartyDialog/AddPartyDialog.cpp \
     Windows\MainWindow\MainWindow.cpp \
     Widgets\PartyLayoutWidget\PartyLayoutWidget.cpp \
     Widgets\TableButton\TableButton.cpp \
     main.cpp
 
 HEADERS += \
+    Windows/AddPartyDialog/AddPartyDialog.h \
     Windows\MainWindow\MainWindow.h \
     Widgets\PartyLayoutWidget\PartyLayoutWidget.h \
     Widgets\TableButton\TableButton.h
 
 FORMS += \
+    Windows/AddPartyDialog/AddPartyDialog.ui \
     Windows\MainWindow\MainWindow.ui
 
 # Default rules for deployment.
