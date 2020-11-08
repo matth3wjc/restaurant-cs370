@@ -1,13 +1,15 @@
 #include "PartyLayoutWidget.h"
 #include <QString>
 
-PartyLayoutWidget::PartyLayoutWidget(QString inName, int inSize)
+PartyLayoutWidget::PartyLayoutWidget(Party* inParty)
 {
-    nameLabel.setText("Name: " + inName);
+    party = inParty;
+
+    nameLabel.setText("Name: " + party->getName());
     nameLabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     addWidget(&nameLabel, 0, 0);
 
-    sizeLabel.setText("Size: " + QString::number(inSize, 10));
+    sizeLabel.setText("Size: " + QString::number(party->getSize(), 10));
     sizeLabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     addWidget(&sizeLabel, 0, 1);
 
