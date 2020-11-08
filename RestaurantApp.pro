@@ -10,20 +10,21 @@ CONFIG += c++11
 
 SOURCES += \
     Windows/AddPartyDialog/AddPartyDialog.cpp \
-    Windows\MainWindow\MainWindow.cpp \
-    Widgets\PartyLayoutWidget\PartyLayoutWidget.cpp \
-    Widgets\TableButton\TableButton.cpp \
+    Windows/MainWindow/MainWindow.cpp \
+    Widgets/PartyLayoutWidget/PartyLayoutWidget.cpp \
+    Widgets/TableButton/TableButton.cpp \
     main.cpp
 
 HEADERS += \
+    Party.h \
     Windows/AddPartyDialog/AddPartyDialog.h \
-    Windows\MainWindow\MainWindow.h \
-    Widgets\PartyLayoutWidget\PartyLayoutWidget.h \
-    Widgets\TableButton\TableButton.h
+    Windows/MainWindow/MainWindow.h \
+    Widgets/PartyLayoutWidget/PartyLayoutWidget.h \
+    Widgets/TableButton/TableButton.h
 
 FORMS += \
     Windows/AddPartyDialog/AddPartyDialog.ui \
-    Windows\MainWindow\MainWindow.ui
+    Windows/MainWindow/MainWindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -4,14 +4,17 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
+#include "Party.h"
 
 class PartyLayoutWidget : public QGridLayout
 {
     Q_OBJECT
 
 public:
-    PartyLayoutWidget(QString inName, int inSize);
+    PartyLayoutWidget(Party* inParty);
+    Party* getParty() { return party; };
 private:
+    Party* party;
     QLabel nameLabel;
     QLabel sizeLabel;
     QPushButton editButton;
