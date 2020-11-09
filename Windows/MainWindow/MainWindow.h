@@ -24,7 +24,6 @@ public:
 
 private slots:
     void on_addToWaitlistButton_clicked();
-
     void on_actionDelete_All_Parties_On_Waitlist_triggered();
 
 private:
