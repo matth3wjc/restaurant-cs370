@@ -4,6 +4,7 @@
 #include "../../Widgets/TableButton/TableButton.h"
 #include "../../Widgets/PartyLayoutWidget/PartyLayoutWidget.h"
 #include "../AddPartyDialog/AddPartyDialog.h"
+#include "../../Party.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
