@@ -1,3 +1,5 @@
+//Created by Ryan McKay
+
 #ifndef TABLE_H
 #define TABLE_H
 

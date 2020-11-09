@@ -1,3 +1,5 @@
+//Created by Ryan McKay
+
 #include "MainWindow.h"
 #include <QDialog>
 #include "ui_mainwindow.h"
