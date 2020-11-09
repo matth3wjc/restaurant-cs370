@@ -1,3 +1,5 @@
+//Created by Ryan McKay
+
 #include "PartyLayoutWidget.h"
 #include <QString>
 
