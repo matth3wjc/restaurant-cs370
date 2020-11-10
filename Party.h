@@ -16,7 +16,7 @@ public:
 private:
     QString name;
     int size;
-    int id = -1;
+    //int id = -1;
 };
 
 #endif

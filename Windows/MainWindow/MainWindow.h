@@ -1,5 +1,6 @@
 //Created by Ryan McKay
-//The corresponding .ui to this window, i.e. MainWindow.ui was also created by Ryan McKay
+// The corresponding .ui to this window,
+// i.e. MainWindow.ui, was also created by Ryan McKay
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H

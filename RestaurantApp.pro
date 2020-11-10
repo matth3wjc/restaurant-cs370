@@ -11,11 +11,11 @@ CONFIG += c++11
 
 SOURCES += \
     Database_Classes/DataBaseManagerObject.cpp \
-    Database_Classes/Floormap.cpp \
     Database_Classes/Pair.cpp \
-    Database_Classes/Party.cpp \
-    Database_Classes/Table.cpp \
-    Database_Classes/Waitlist.cpp \
+    Database_Classes/PartyDMA.cpp \
+    Database_Classes/PartyDMO.cpp \
+    Database_Classes/TableDMA.cpp \
+    Database_Classes/TableDMO.cpp \
     Database_Classes/databasemanagerarrayq.cpp \
     Widgets/PartyLayoutWidget/PartyLayoutWidget.cpp \
     Windows/AddPartyDialog/AddPartyDialog.cpp \
@@ -25,11 +25,11 @@ SOURCES += \
 
 HEADERS += \
     Database_Classes/DataBaseManagerObject.hpp \
-    Database_Classes/Floormap.hpp \
     Database_Classes/Pair.hpp \
-    Database_Classes/Party.hpp \
-    Database_Classes/Table.hpp \
-    Database_Classes/Waitlist.hpp \
+    Database_Classes/PartyDMA.hpp \
+    Database_Classes/PartyDMO.hpp \
+    Database_Classes/TableDMA.hpp \
+    Database_Classes/TableDMO.hpp \
     Database_Classes/databasemanagerarrayq.h \
     Party.h \
     Widgets/PartyLayoutWidget/PartyLayoutWidget.h \
