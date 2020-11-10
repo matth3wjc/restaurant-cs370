@@ -2,8 +2,8 @@
 // Created by Admin on 10/20/2020.
 //
 
-#ifndef TABLE_PARTY_WAITLIST_PARTY_HPP
-#define TABLE_PARTY_WAITLIST_PARTY_HPP
+#ifndef PARTYDMO_HPP
+#define PARTYDMO_HPP
 #include <iostream>
 #include "DataBaseManagerObject.hpp"
 
@@ -24,4 +24,4 @@ public:
 };
 
 
-#endif //TABLE_PARTY_WAITLIST_PARTY_HPP
+#endif //PARTYDMO_HPP
