@@ -7,10 +7,11 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "DataBaseManagerObject.hpp"
 #include "Pair.hpp"
-#include "Party.hpp"
+//#include "Party.hpp"
 
-class Table {
+class Table : public DataBaseManagerObject{
 public:
     Table();
     std::string _status();
@@ -18,11 +19,11 @@ public:
     int _seats();
     void setStatus(std::string);
 
-private:
+//private: temporary fix, add accesors
     std::string status;
     int nbr, seats;
     bool cachedStatus, cachedNbr, cachedSeats;
-    Party *party;
+    //Party *party;
 };
 
 

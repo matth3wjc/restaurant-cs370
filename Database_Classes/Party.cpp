@@ -8,11 +8,10 @@
 #include "DataBaseManagerArray.hpp"
 #include "Pair.hpp"
 
-Party::Party() {
-    parseJsonArray();
+PartyDMO::PartyDMO() {
 }
 
-std::string Party::_name() {
+std::string PartyDMO::_name() {
     if (cachedName)
         return name;
     cachedName = true;
@@ -20,7 +19,7 @@ std::string Party::_name() {
     return name;
 }
 
-int Party::_size() {
+int PartyDMO::_size() {
     if (cachedSize)
         return size;
     cachedSize = true;
@@ -28,7 +27,7 @@ int Party::_size() {
     return size;
 }
 
-int Party::_id() {
+int PartyDMO::_id() {
     if (cachedId)
         return id;
     cachedId = true;

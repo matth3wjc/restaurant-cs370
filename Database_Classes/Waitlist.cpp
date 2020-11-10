@@ -13,27 +13,35 @@
 
 
 Waitlist::Waitlist() {
-    std::fstream file("party.txt");
+    std::fstream file("C:/Users/lukes/restaurant-cs370/JSON_examples/waitlist.txt");//added file path, make sure to set your own
     parseJSONArray(file);
 
-    for(auto i: ListOfParties()){
-        i->_status();
+    for(auto i: *ListOfParties()){
+        i->_name();
     }
 }
 
 bool Waitlist::addParty(std::string name, int id, int size) {
-    Party *party = new Party;
-    party->_name() = name;
-    party->_id() = id;
-    party->_size() = size;
-    ListOfParties().push_back(party);
+    PartyDMO *party = new PartyDMO;
+    party->name = name;
+    party->id = id;
+    party->size = size;
+    //add to database
+    std::vector<QString> url;
+    url.push_back("party");
+    url.push_back("1");                         // rest id
+    url.push_back(QString::fromStdString(name));
+    url.push_back(QString::number(size));
+    addToDataBase(url);
+
+    ListOfParties()->push_back(party);
     return true;
 }
 
 bool Waitlist::removeParty(int id) {
-    for (auto i : ListOfParties()) {
+    for (auto i : *ListOfParties()) {
         if (i->_id() == id) {
-            ListOfParties().pop_back(i->_id());
+            //ListOfParties()->pop_back(i->_id());
             return true;
         }
         return false;
