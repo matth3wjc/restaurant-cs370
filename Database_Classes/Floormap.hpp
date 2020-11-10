@@ -4,21 +4,21 @@
 
 #ifndef CS370_FLOORMAP_HPP
 #define CS370_FLOORMAP_HPP
+#include "databasemanagerarrayq.h"  //new qt header
+#include "Table.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 
-class Floormap {
+class Floormap : public DataBaseManagerArrayQ{
 public:
     Floormap();
-    virtual DataBaseManagerObject *objectNode() {new Table}
-    bool setTableStat(int nbr, std::string);
+    DataBaseManagerObject *dataBaseManagerObject() {return new Table;}
+    bool addTable(int nbr, std::string);
     bool setAllOpen();
     bool setAllClosed();
-    std::vector<Table*> *listOfTables() { return _listOfDataObjects; }
-private:
-    std::vector<Table *> *_listOfDataObjects;
+    std::vector<Table*> *listOfTables() { return (std::vector<Table*> *) listOfDataObjects() ; }//added casting
 
 };
 

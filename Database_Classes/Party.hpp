@@ -5,19 +5,19 @@
 #ifndef TABLE_PARTY_WAITLIST_PARTY_HPP
 #define TABLE_PARTY_WAITLIST_PARTY_HPP
 #include <iostream>
-#include "Pair.hpp"
+#include "DataBaseManagerObject.hpp"
 
 
 class DataBaseManagerObject;
 
-class Party {
+class PartyDMO : public DataBaseManagerObject{ //changed name to avoid redefintio
 public:
-    Party();
+    PartyDMO();
     std::string _name();
     int _size();
     int _id();
 
-private:
+// private: temporary change, add accesors and make private again
     std::string name; //<key, value>
     int size, id;
     bool cachedName, cachedId, cachedSize;
