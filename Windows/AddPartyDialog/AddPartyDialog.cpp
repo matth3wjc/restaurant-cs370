@@ -1,8 +1,9 @@
 #include "AddPartyDialog.h"
 #include "ui_addpartydialog.h"
 #include <iostream>
+#include "../../Party.h"
 
-AddPartyDialog::AddPartyDialog(QWidget *parent)
+AddPartyDialog::AddPartyDialog(QWidget *parent, Party *&newParty)
     : QDialog(parent)
     , ui(new Ui::AddPartyDialog)
 {
