@@ -1,12 +1,16 @@
+// Created by Matthew Coady
+// Also created the addpartydialog.ui file
+
 #include "AddPartyDialog.h"
-#include "ui_addpartydialog.h"
+#include "ui_AddPartyDialog.h"
 #include <iostream>
 #include "../../Party.h"
 
-AddPartyDialog::AddPartyDialog(QWidget *parent, Party *&newParty)
+AddPartyDialog::AddPartyDialog(QWidget *parent, Party **Party)
     : QDialog(parent)
     , ui(new Ui::AddPartyDialog)
 {
+    myParty = Party;
     ui->setupUi(this);
 }
 
@@ -36,7 +40,8 @@ void AddPartyDialog::on_confirmButton_clicked()
     }
     else
     {
-        Party *&newParty = new Party(party_name, party_nbr);
+        Party *newParty = new Party(party_name, party_nbr);
+        myParty = &newParty;
         this->close();
     }
 }

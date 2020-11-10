@@ -37,7 +37,7 @@ void MainWindow::on_addToWaitlistButton_clicked()
 {
 
     //Dialog version
-    /*
+    // /*
     Party* newParty = nullptr;
 
         //TO MATTHEW: Below is the new constructor I would like to call
@@ -45,7 +45,7 @@ void MainWindow::on_addToWaitlistButton_clicked()
         //Your function will create a new Party assigned to this pointer.
         //With a reference pointer, when you update your local pointer in the AddPartyDialog class, it will update mine as well.
         //The party will need an int, not a string for it's size btw, so please convert it before passing it to the Party constructor.
-    AddPartyDialog addPartyDialog(this, newParty);
+    AddPartyDialog addPartyDialog(this, &newParty);
 
         //When I call exec() on addPartyDialog, it will return a signal if the user added the party or cancelled it.
         //Please read the QDialog Documentation, the Modal section, to learn how to do this.
@@ -53,24 +53,26 @@ void MainWindow::on_addToWaitlistButton_clicked()
         //If you cannot do the signal sending before the deadline, we can skip the success check for the demo.
         // (Btw you don't need to worry about input validation for this demo,
         // that can be added after the demo, after you've implemented the two above features)
-    if(addPartyDialog.exec())
+
+    if(true)
     {
-        PartyLayoutWidget* newParty = new PartyLayoutWidget(newParty)
+        addPartyDialog.exec();
+        PartyLayoutWidget* newPartyLayoutWidget = new PartyLayoutWidget(newParty);
         ++numOfParties;
-        waitList.push_back(newParty);
-        ui->WaitlistScrollAreaContents->addLayout(newParty);
+        waitList.push_back(newPartyLayoutWidget);
+        ui->WaitlistScrollAreaContents->addLayout(newPartyLayoutWidget);
     }
-    */
+    // */
 
     //Temp way that skips dialog. Comment this all out to use dialog version
-    // /*
+     /*
     ++numOfParties;
     QString partyName = "Party " + QString::number(numOfParties, 10);
     Party* newParty = new Party(partyName, 5);
     PartyLayoutWidget* newPartyLayoutWidget = new PartyLayoutWidget(newParty);
     waitList.push_back(newPartyLayoutWidget);
     ui->WaitlistScrollAreaContents->addLayout(newPartyLayoutWidget);
-    // */
+     */
 }
 
 void MainWindow::on_actionDelete_All_Parties_On_Waitlist_triggered()
