@@ -38,7 +38,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_addToWaitlistButton_clicked()
 {
     //Dialog version
-         /*
+         // /*
         Party* newParty = nullptr;
 
             //TO MATTHEW: Below is the new constructor I would like to call
@@ -62,10 +62,10 @@ void MainWindow::on_addToWaitlistButton_clicked()
             ++numOfParties;
             waitList.push_back(newPartyLayoutWidget);
             ui->WaitlistScrollAreaContents->addLayout(newPartyLayoutWidget);
-        */
+        // */
 
     //Temp way that skips dialog. Comment this all out to use dialog version
-    // /*
+     /*
     ++numOfParties;
     QString partyName = "Party " + QString::number(numOfParties, 10);
     Party* newParty = new Party(partyName, 5);
@@ -73,7 +73,7 @@ void MainWindow::on_addToWaitlistButton_clicked()
     PartyLayoutWidget* newPartyLayoutWidget = new PartyLayoutWidget(newParty);
     waitList.push_back(newPartyLayoutWidget);
     ui->WaitlistScrollAreaContents->addLayout(newPartyLayoutWidget);
-    // */
+     */
 }
 
 void MainWindow::on_actionDelete_All_Parties_On_Waitlist_triggered()
