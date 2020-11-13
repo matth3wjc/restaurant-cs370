@@ -6,11 +6,11 @@
 #include <iostream>
 #include "../../Party.h"
 
-AddPartyDialog::AddPartyDialog(QWidget *parent, Party **Party)
+AddPartyDialog::AddPartyDialog(QWidget *parent, Party **party)
     : QDialog(parent)
     , ui(new Ui::AddPartyDialog)
 {
-    myParty = Party;
+    myParty = party;
     ui->setupUi(this);
 }
 
@@ -41,7 +41,7 @@ void AddPartyDialog::on_confirmButton_clicked()
     else
     {
         Party *newParty = new Party(party_name, party_nbr);
-        myParty = &newParty;
+        *myParty = newParty;
         this->close();
     }
 }
