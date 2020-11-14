@@ -34,3 +34,4 @@ int PartyDMO::_id() {
     id = valueForIntegerAttribute("id");
     return id;
 }
+

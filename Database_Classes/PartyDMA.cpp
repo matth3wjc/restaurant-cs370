@@ -8,7 +8,7 @@
 
 
 PartyDMA::PartyDMA() {
-    std::fstream file("C:/Users/lukes/restaurant-cs370/JSON_examples/PartyDMA.txt");//added file path, make sure to set your own
+    std::fstream file("C:/Users/lukes/restaurant-cs370/JSON_examples/waitlist.txt");//added file path, make sure to set your own
     parseJSONArray(file);
 
     for(auto i: *ListOfParties()){
