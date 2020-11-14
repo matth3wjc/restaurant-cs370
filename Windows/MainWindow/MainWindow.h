@@ -8,6 +8,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <vector>
+#include <list>
 #include "..\..\Widgets\TableButton\TableButton.h"
 #include "..\..\Widgets\PartyLayoutWidget\PartyLayoutWidget.h"
 
@@ -27,13 +28,15 @@ private slots:
     void on_addToWaitlistButton_clicked();
     void on_actionDelete_All_Parties_On_Waitlist_triggered();
 
+    void on_actionDelete_All_Tables_triggered();
+
 private:
     QPushButton button;
     Ui::MainWindow *ui;
     std::vector<std::vector<TableButton*>> floormap;
-    std::vector<PartyLayoutWidget*> waitList;
+    std::list<PartyLayoutWidget*> waitList;
     int numOfParties = 0;
-    int floorMapWidth = 5;
-    int floorMapHeight = 5;
+    int floorMapWidth = 10;
+    int floorMapHeight = 10;
 };
 #endif // MAINWINDOW_H
