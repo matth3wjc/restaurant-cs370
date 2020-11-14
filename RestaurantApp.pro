@@ -21,6 +21,7 @@ SOURCES += \
     Windows/AddPartyDialog/AddPartyDialog.cpp \
     Windows/MainWindow/MainWindow.cpp \
     Widgets/TableButton/TableButton.cpp \
+    globalFunctions.cpp \
     main.cpp
 
 HEADERS += \
@@ -32,10 +33,12 @@ HEADERS += \
     Database_Classes/TableDMO.hpp \
     Database_Classes/databasemanagerarrayq.h \
     Party.h \
+    TableStatusEnum.h \
     Widgets/PartyLayoutWidget/PartyLayoutWidget.h \
     Windows/AddPartyDialog/AddPartyDialog.h \
     Windows/MainWindow/MainWindow.h \
-    Widgets/TableButton/TableButton.h
+    Widgets/TableButton/TableButton.h \
+    globalFunctions.h
 
 FORMS += \
     Windows/AddPartyDialog/AddPartyDialog.ui \

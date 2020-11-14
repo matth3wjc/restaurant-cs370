@@ -1,0 +1,65 @@
+#ifndef TABLESTATUS_H
+#define TABLESTATUS_H
+
+#include <QString>
+#include <string>
+
+enum class TableStatus
+{
+    DNE,
+    OPEN,
+    SEATED,
+    SALAD,
+    ENTREE,
+    CHECK,
+    BUSS,
+    CLOSED
+};
+
+QString getTableStatusQString(TableStatus tableStatus)
+{
+    switch(tableStatus)
+    {
+    case TableStatus::DNE:
+        return "DNE";
+    case TableStatus::OPEN:
+        return "Open";
+    case TableStatus::SEATED:
+        return "Seated";
+    case TableStatus::SALAD:
+        return "Salad";
+    case TableStatus::ENTREE:
+        return "Entree";
+    case TableStatus::CHECK:
+        return "Check";
+    case TableStatus::BUSS:
+        return "Buss";
+    case TableStatus::CLOSED:
+        return "Closed";
+    }
+}
+
+std::string getTableStatusString(TableStatus tableStatus)
+{
+    switch(tableStatus)
+    {
+    case TableStatus::DNE:
+        return "DNE";
+    case TableStatus::OPEN:
+        return "Open";
+    case TableStatus::SEATED:
+        return "Seated";
+    case TableStatus::SALAD:
+        return "Salad";
+    case TableStatus::ENTREE:
+        return "Entree";
+    case TableStatus::CHECK:
+        return "Check";
+    case TableStatus::BUSS:
+        return "Buss";
+    case TableStatus::CLOSED:
+        return "Closed";
+    }
+}
+
+#endif // TABLESTATUS_H

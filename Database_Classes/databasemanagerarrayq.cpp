@@ -20,7 +20,7 @@ void DataBaseManagerArrayQ::replyFinished(QNetworkReply *reply)
 {
     qDebug() << reply->readAll();
     if(reply->error() == QNetworkReply::NoError)
-        emit Ok();
+        emit ok();
     else
         emit failure(reply->errorString());
 }

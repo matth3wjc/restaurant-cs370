@@ -19,7 +19,7 @@ private slots:
     void replyFinished(QNetworkReply *);
 
 signals:
-    void Ok();
+    void ok();
     void failure(QString err);
 
 public:
