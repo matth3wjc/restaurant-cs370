@@ -6,8 +6,6 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    PartyDMA tmp;
-    tmp.addParty("telly", 1, 2);
     MainWindow w;
     w.show();
     return a.exec();
