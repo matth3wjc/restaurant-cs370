@@ -5,9 +5,9 @@
 #include "TableDMA.hpp"
 
 TableDMA::TableDMA(){
-    std::fstream file("C:/Users/lukes/restaurant-cs370/JSON_examples/tables.txt");//added file path, make sure to set your own
+    //std::fstream file("C:/Users/lukes/restaurant-cs370/JSON_examples/tables.txt");//added file path, make sure to set your own
 
-    parseJSONArray(file); //DataBaseManagerArray
+    //parseJSONArray(file); //DataBaseManagerArray
 
     for (auto i: *listOfTables()){
         i->_status();
@@ -26,7 +26,7 @@ bool TableDMA::addTable(int nbr, std::string stat){
     url.push_back("1");                         // rest id
     url.push_back(QString::number(nbr));
     url.push_back(QString::fromStdString(stat));
-    addToDataBase(url);
+    //addToDataBase(url);
 
     listOfTables()->push_back(table);
     return true;

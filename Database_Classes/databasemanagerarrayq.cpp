@@ -25,15 +25,10 @@ void DataBaseManagerArrayQ::replyFinished(QNetworkReply *reply)
         emit failure(reply->errorString());
 }
 
-void DataBaseManagerArrayQ::addToDataBase(std::vector<QString> &feilds){
-    manager = new QNetworkAccessManager(this);
+void DataBaseManagerArrayQ::fileDownload(){
     connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
-    QString url = "http://localhost:3000/api/";
 
-    for(auto i: feilds)
-        url += i + "/";
-
-    QUrl qrl(url);
+    QUrl qrl("http://localhost:3000/api/party/1");
     manager->get(QNetworkRequest(qrl));
 }
 

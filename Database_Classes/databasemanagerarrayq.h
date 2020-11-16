@@ -27,7 +27,7 @@ public:
     ~DataBaseManagerArrayQ();
     std::vector<DataBaseManagerObject *> *listOfDataObjects() { return _listOfDataObjects; }
     virtual DataBaseManagerObject *dataBaseManagerObject() = 0;
-    void addToDataBase(std::vector<QString> &fields);
+    void fileDownload();
     int numJSONObjects();
     void parseJSONArray(std::fstream &stream);
 

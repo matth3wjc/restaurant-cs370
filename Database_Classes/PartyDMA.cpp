@@ -27,7 +27,7 @@ bool PartyDMA::addParty(std::string name, int id, int size) {
     url.push_back("1");                         // rest id
     url.push_back(QString::fromStdString(name));
     url.push_back(QString::number(size));
-    addToDataBase(url);
+    fileDownload();
 
     ListOfParties()->push_back(party);
     return true;
