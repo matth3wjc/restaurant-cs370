@@ -17,6 +17,7 @@ SOURCES += \
     Database_Classes/TableDMA.cpp \
     Database_Classes/TableDMO.cpp \
     Database_Classes/databasemanagerarrayq.cpp \
+    Updaters/Updater.cpp \
     Widgets/PartyLayoutWidget/PartyLayoutWidget.cpp \
     Windows/AddPartyDialog/AddPartyDialog.cpp \
     Windows/MainWindow/MainWindow.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     Database_Classes/databasemanagerarrayq.h \
     Party.h \
     TableStatusEnum.h \
+    Updaters/Updater.h \
     Widgets/PartyLayoutWidget/PartyLayoutWidget.h \
     Windows/AddPartyDialog/AddPartyDialog.h \
     Windows/MainWindow/MainWindow.h \
@@ -48,3 +50,4 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
