@@ -10,7 +10,7 @@ class TableButton : public QPushButton
 {
     Q_OBJECT
 public:
-    TableButton(int, TableStatus);
+    TableButton(int inTableNum, TableStatus inTableStatus);
 
     void deleteTable();
 
