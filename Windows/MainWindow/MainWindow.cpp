@@ -86,13 +86,23 @@ void MainWindow::on_addToWaitlistButton_clicked()
 
 void MainWindow::on_actionDelete_All_Parties_On_Waitlist_triggered()
 {
-    for(auto iterator = waitList.begin(); iterator != waitList.end(); ++iterator)
+    while(!waitList.empty())
     {
-        PartyLayoutWidget* partyButtonToDelete = *iterator;
+        PartyLayoutWidget* partyButtonToDelete = waitList.front();
+        waitList.pop_front();
+        ui->WaitlistScrollAreaContents->removeItem(partyButtonToDelete);
+        delete partyButtonToDelete;
+    }
+    /*
+    for(auto iterator = waitList.begin(); iterator != waitList.end();)
+    {
+
+        partyButtonToDelete = *iterator;
         waitList.erase(iterator);
         ui->WaitlistScrollAreaContents->removeItem(partyButtonToDelete);
         delete partyButtonToDelete;
     }
+    */
     numOfParties = 0;
 }
 

@@ -19,7 +19,6 @@ TableButton::TableButton(int inTableNum, TableStatus inTableStatus)
         setText("+");
         setFlat(true);
     }
-
 }
 
 void TableButton::onClicked()
