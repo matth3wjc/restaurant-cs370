@@ -64,12 +64,15 @@ void MainWindow::on_addToWaitlistButton_clicked()
             // (Btw you don't need to worry about input validation for this demo,
             // that can be added after the demo, after you've implemented the two above features)
 
-            addPartyDialog.exec();
-
+        if(addPartyDialog.exec())
+        {
             PartyLayoutWidget* newPartyLayoutWidget = new PartyLayoutWidget(newParty);
             ++numOfParties;
             waitList.push_back(newPartyLayoutWidget);
             ui->WaitlistScrollAreaContents->addLayout(newPartyLayoutWidget);
+        }
+
+
         // */
 
     //Temp way that skips dialog. Comment this all out to use dialog version
