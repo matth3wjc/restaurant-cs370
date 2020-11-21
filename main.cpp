@@ -1,4 +1,5 @@
 #include "Windows\MainWindow\MainWindow.h"
+#include "Database_Classes/PartyDMA.hpp"
 
 #include <QApplication>
 

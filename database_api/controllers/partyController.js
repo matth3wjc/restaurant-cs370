@@ -38,16 +38,16 @@ class partyController{
 
     async addParty(ctx, next) {
         console.log("Controller HIT: partyController::addParty");
-        return new Promise((reject, resolve) => {
+        return new Promise((resolve, reject) => {
             chpConection.query({
-                sql: 'CALL proc_add_party( ?, ?, ? );',
+                sql: 'SELECT func_add_party( ?, ?, ? ) AS new_id;',
                 values: [ctx.params.id, ctx.params.name, ctx.params.size]
             }, (err, res) => {
                 if (err){
                     reject(`Error querying CHP.test: ${err}`);
                 }
 
-                ctx.body = res;
+                ctx.body = res[0].new_id;
                 ctx.status = 200;
 
                 resolve();

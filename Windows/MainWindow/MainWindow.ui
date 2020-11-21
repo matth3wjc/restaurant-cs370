@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1122</width>
-    <height>657</height>
+    <width>1142</width>
+    <height>666</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,7 +32,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="FloomapsComboBox"/>
+           <widget class="QComboBox" name="FloomapsComboBox">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="nextFloormapButton">
@@ -53,8 +57,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>818</width>
-             <height>563</height>
+             <width>833</width>
+             <height>572</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout">
@@ -90,8 +94,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>274</width>
-             <height>564</height>
+             <width>279</width>
+             <height>573</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -113,18 +117,18 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1122</width>
+     <width>1142</width>
      <height>20</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuEdit">
+   <widget class="QMenu" name="menuDelete">
     <property name="title">
-     <string>Edit</string>
+     <string>Delete</string>
     </property>
     <addaction name="actionDelete_All_Parties_On_Waitlist"/>
     <addaction name="actionDelete_All_Tables"/>
    </widget>
-   <addaction name="menuEdit"/>
+   <addaction name="menuDelete"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionDelete_All_Parties_On_Waitlist">

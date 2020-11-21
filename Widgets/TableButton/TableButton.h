@@ -4,20 +4,26 @@
 #define TABLE_H
 
 #include <QPushButton>
+#include "../../TableStatusEnum.h"
 
 class TableButton : public QPushButton
 {
     Q_OBJECT
 public:
-    TableButton(int, bool);
+    TableButton(int inTableNum, TableStatus inTableStatus);
+
+    void deleteTable();
+
+    int getTableNum() {return tableNum;};
+    TableStatus getTableStatus() {return tableStatus;};
+
     ~TableButton();
 
 public slots:
     void onClicked();
 private:
     int tableNum;
-    bool exists;
-    static int numOfTables;
+    TableStatus tableStatus;
 };
 
 #endif // TABLE_H

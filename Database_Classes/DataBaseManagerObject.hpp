@@ -1,3 +1,5 @@
+//Luke Shoulders
+
 #ifndef DATABASEMANAGEROBJECT_HPP
 #define DATABASEMANAGEROBJECT_HPP
 #include <vector>
@@ -18,3 +20,5 @@ private:
 };
 
 #endif 
+
+
