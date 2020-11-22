@@ -23,11 +23,22 @@ TableButton::TableButton(int inTableNum, TableStatus inTableStatus)
 
 void TableButton::onClicked()
 {
-    if(tableStatus == TableStatus::DNE)
+    switch(tableStatus)
     {
-        tableStatus = TableStatus::OPEN;
-        setFlat(false);
-        setText(QString::number(tableNum, 10) + "\n" + getTableStatusQString(tableStatus));
+        case TableStatus::DNE:
+        {
+            tableStatus = TableStatus::OPEN;
+            setFlat(false);
+            setText(QString::number(tableNum, 10) + "\n" + getTableStatusQString(tableStatus));
+        }
+        break;
+    case TableStatus::OPEN:
+        {
+            tableStatus = TableStatus::DNE;
+            setFlat(true);
+            setText("+");
+        }
+        break;
     }
 }
 
