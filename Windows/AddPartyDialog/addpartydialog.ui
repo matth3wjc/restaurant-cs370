@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>438</width>
+    <width>533</width>
     <height>337</height>
    </rect>
   </property>
@@ -34,7 +34,7 @@
   <widget class="QPushButton" name="confirmButton">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>270</x>
      <y>260</y>
      <width>80</width>
      <height>25</height>
@@ -65,7 +65,7 @@
   <widget class="QTextEdit" name="input_1">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>320</x>
      <y>80</y>
      <width>141</width>
      <height>31</height>
@@ -93,7 +93,7 @@
   <widget class="QTextEdit" name="input_2">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>320</x>
      <y>170</y>
      <width>141</width>
      <height>31</height>
@@ -103,9 +103,9 @@
   <widget class="QLabel" name="warning">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>290</y>
-     <width>401</width>
+     <width>511</width>
      <height>31</height>
     </rect>
    </property>
@@ -114,8 +114,24 @@
      <pointsize>9</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>260</y>
+     <width>80</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
    </property>
   </widget>
  </widget>

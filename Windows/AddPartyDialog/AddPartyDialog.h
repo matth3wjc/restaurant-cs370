@@ -20,6 +20,7 @@ public:
 
 private slots:
     void on_confirmButton_clicked();
+    void on_cancelButton_clicked();
 
 private:
     Party **myParty;
