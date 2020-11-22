@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddPartyDialog</class>
- <widget class="QDialog" name="AddPartyDialog">
+ <class>SeatParty</class>
+ <widget class="QDialog" name="SeatParty">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>533</width>
-    <height>337</height>
+    <width>590</width>
+    <height>210</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>AddPartyDialog</string>
+   <string>SeatParty</string>
   </property>
   <widget class="QLabel" name="title">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>20</x>
      <y>10</y>
-     <width>291</width>
+     <width>431</width>
      <height>31</height>
     </rect>
    </property>
@@ -28,23 +28,10 @@
     </font>
    </property>
    <property name="text">
-    <string>Add a new party to the waitlist:</string>
+    <string>Seat selected party from the waitlist to a table:</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="confirmButton">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>260</y>
-     <width>80</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Confirm</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="prompt_1">
+  <widget class="QLabel" name="prompt">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -59,53 +46,51 @@
     </font>
    </property>
    <property name="text">
-    <string>Enter name for party:</string>
+    <string>Enter table number:</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="input_1">
+  <widget class="QTextEdit" name="input">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>350</x>
      <y>80</y>
-     <width>191</width>
+     <width>201</width>
      <height>31</height>
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="prompt_2">
+  <widget class="QPushButton" name="confirmButton">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>170</y>
-     <width>131</width>
-     <height>21</height>
+     <x>350</x>
+     <y>120</y>
+     <width>80</width>
+     <height>25</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
    </property>
    <property name="text">
-    <string>Enter party size:</string>
+    <string>Confirm</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="input_2">
+  <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>170</y>
-     <width>191</width>
-     <height>31</height>
+     <x>470</x>
+     <y>120</y>
+     <width>80</width>
+     <height>25</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
    </property>
   </widget>
   <widget class="QLabel" name="warning">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>290</y>
-     <width>511</width>
+     <x>20</x>
+     <y>160</y>
+     <width>551</width>
      <height>31</height>
     </rect>
    </property>
@@ -119,19 +104,6 @@
    </property>
    <property name="text">
     <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="cancelButton">
-   <property name="geometry">
-    <rect>
-     <x>390</x>
-     <y>260</y>
-     <width>80</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Cancel</string>
    </property>
   </widget>
  </widget>

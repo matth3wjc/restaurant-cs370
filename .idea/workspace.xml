@@ -9,7 +9,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12391a7d-58c4-48a3-87c1-33c118debf23" name="Default Changelist" comment="" />
+    <list default="true" id="12391a7d-58c4-48a3-87c1-33c118debf23" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/seatParty/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seatParty/SeatParty.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seatParty/SeatParty.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seatParty/SeatParty.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seatParty/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seatParty/seatParty.pro" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +48,7 @@
       <option name="presentableId" value="Default" />
       <updated>1604916783964</updated>
       <workItem from="1604916785698" duration="528000" />
+      <workItem from="1605927573164" duration="89000" />
     </task>
     <servers />
   </component>

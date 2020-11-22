@@ -20,6 +20,8 @@ SOURCES += \
     Updaters/Updater.cpp \
     Widgets/PartyLayoutWidget/PartyLayoutWidget.cpp \
     Windows/AddPartyDialog/AddPartyDialog.cpp \
+    Windows/EditPartyDialog/EditPartyDialog.cpp \
+    Windows/SeatPartyDialog/SeatPartyDialog.cpp \
     Windows/MainWindow/MainWindow.cpp \
     Widgets/TableButton/TableButton.cpp \
     globalFunctions.cpp \
@@ -38,12 +40,16 @@ HEADERS += \
     Updaters/Updater.h \
     Widgets/PartyLayoutWidget/PartyLayoutWidget.h \
     Windows/AddPartyDialog/AddPartyDialog.h \
+    Windows/EditPartyDialog/EditPartyDialog.h \
+    Windows/SeatPartyDialog/SeatPartyDialog.h \
     Windows/MainWindow/MainWindow.h \
     Widgets/TableButton/TableButton.h \
     globalFunctions.h
 
 FORMS += \
     Windows/AddPartyDialog/AddPartyDialog.ui \
+    Windows/EditPartyDialog/EditPartyDialog.ui \
+    Windows/SeatPartyDialog/SeatPartyDialog.ui \
     Windows/MainWindow/MainWindow.ui
 
 # Default rules for deployment.

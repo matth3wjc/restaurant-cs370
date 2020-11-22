@@ -15,7 +15,7 @@ class AddPartyDialog : public QDialog
     Q_OBJECT
 
 public:
-    AddPartyDialog(QWidget *parent = nullptr, Party **Party = nullptr);
+    AddPartyDialog(QWidget *parent = nullptr, Party **party = nullptr);
     ~AddPartyDialog();
 
 private slots:
