@@ -4,10 +4,11 @@
 #include "SeatPartyDialog.h"
 #include "ui_SeatPartyDialog.h"
 
-SeatParty::SeatParty(QWidget *parent)
+SeatParty::SeatParty(QWidget *parent, std::vector<int> **tables)
     : QDialog(parent)
     , ui(new Ui::SeatParty)
 {
+    table_nbrs = tables;
     ui->setupUi(this);
 }
 
@@ -20,8 +21,9 @@ void SeatParty::on_confirmButton_clicked()
 {
     bool flag, selectedTableIsOpen = false;
     int table_nbr = (ui->input->toPlainText()).toInt(&flag);
+    std::vector<int> *myVector = *table_nbrs;
 
-    for (int number : table_nbrs)
+    for (int number : *myVector)
     {
         if(table_nbr == number)
         {
@@ -45,8 +47,8 @@ void SeatParty::on_confirmButton_clicked()
     }
     else
     {
-        // return table_nbr
-        this->accept();
+        this->setResult(table_nbr);
+        this->result();
         this->close();
     }
 }
