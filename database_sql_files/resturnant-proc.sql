@@ -30,7 +30,7 @@ CREATE PROCEDURE proc_make_party
 BEGIN
 	add_table: LOOP
 		IF _number_of_tables > 0 THEN
-			INSERT INTO `table`(nbr, `status`, rest_id) VALUES (_number_of_tables, "CLOSED", 1);
+			INSERT INTO `table`(nbr, `status`, rest_id) VALUES (_number_of_tables, "DNE", 1);
 			SET _number_of_tables = _number_of_tables - 1;
 			ITERATE add_table;
 		END IF;
