@@ -8,9 +8,8 @@
 
 
 PartyDMA::PartyDMA() {
-    std::fstream file("C:/Users/lukes/restaurant-cs370/JSON_examples/waitlist.txt");//added file path, make sure to set your own
-    parseJSONArray(file);
-
+    setFilePath("../restaurant-cs370/JSON_files/waitlist.txt");
+    fileDownload("http://localhost:3000/api/party/1");
     for(auto i: *ListOfParties()){
         i->_name();
     }
@@ -27,7 +26,7 @@ bool PartyDMA::addParty(std::string name, int id, int size) {
     url.push_back("1");                         // rest id
     url.push_back(QString::fromStdString(name));
     url.push_back(QString::number(size));
-    fileDownload();
+    //fileDownload();
 
     ListOfParties()->push_back(party);
     return true;

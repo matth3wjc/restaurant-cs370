@@ -1,4 +1,5 @@
-How to spin up the database in [MySQL workbench](https://dev.mysql.com/downloads/workbench/):
+How to spin up the database in [MySQL workbench](https://dev.mysql.com/downloads/workbench/)
+====================================================
 
     Note(windows only): check the windows 'services' application to make sure your MySQL server is running
     

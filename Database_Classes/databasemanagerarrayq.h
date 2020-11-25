@@ -27,13 +27,14 @@ public:
     ~DataBaseManagerArrayQ();
     std::vector<DataBaseManagerObject *> *listOfDataObjects() { return _listOfDataObjects; }
     virtual DataBaseManagerObject *dataBaseManagerObject() = 0;
-    void fileDownload();
+    void fileDownload(QString urlPath);
     int numJSONObjects();
     void parseJSONArray(std::fstream &stream);
-
+    void setFilePath(QString _filePath);
 protected:
     std::vector<DataBaseManagerObject *> *_listOfDataObjects;
-
+private:
+    QString filePath;
 };
 
 

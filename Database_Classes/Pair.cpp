@@ -39,6 +39,9 @@ void Pair::parsePair(std::fstream &stream) {
         stream.unget();
         parseNumberAtt(stream);
     }
+    else if(c == 'N' || c == 'n'){
+        parseNullAtt(stream);
+    }
     else{
         stream.unget();
         parseStringAtt(stream);
@@ -106,3 +109,19 @@ void Pair::parseStringAtt(std::fstream &stream) {
 
     std::cout << _attributeStringValue << '\n';
 }
+
+void Pair::parseNullAtt(std::fstream &stream){
+    char c;
+
+    stream.get(c);
+
+    while(c != ',' && c != '}'){
+        stream.get(c);
+    }
+
+    stream.unget();
+
+    //set value
+    _attributeNumberValue = -1;
+}
+

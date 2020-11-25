@@ -5,15 +5,14 @@
 #include "TableDMA.hpp"
 
 TableDMA::TableDMA(){
-    //std::fstream file("C:/Users/lukes/restaurant-cs370/JSON_examples/tables.txt");//added file path, make sure to set your own
-
-    //parseJSONArray(file); //DataBaseManagerArray
-
+    setFilePath("../restaurant-cs370/JSON_files/tables.txt");
+    fileDownload("http://localhost:3000/api/table");
+/*
     for (auto i: *listOfTables()){
         i->_status();
         i->_nbr();
         i->_seats();
-    }
+    }*/
 }
 
 bool TableDMA::addTable(int nbr, std::string stat){

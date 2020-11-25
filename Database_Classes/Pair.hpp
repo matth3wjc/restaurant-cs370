@@ -25,6 +25,7 @@ private:
     void parseKey(std::fstream &stream);
     void parseNumberAtt(std::fstream &stream);
     void parseStringAtt(std::fstream &stream);
+    void parseNullAtt(std::fstream &stream);
     std::string _attributeName, _attributeStringValue;
     int _attributeNumberValue;
     bool _isNumber;
