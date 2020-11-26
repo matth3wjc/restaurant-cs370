@@ -5,8 +5,9 @@
 #include "ui_SeatPartyDialog.h"
 #include "../../TableStatusEnum.h"
 #include "../../Widgets/TableButton/TableButton.h"
+#include <QMessageBox>
 
-SeatParty::SeatParty(QWidget *parent, std::vector<std::vector<TableButton>> *tables)
+SeatParty::SeatParty(QWidget *parent, std::vector<std::vector<TableButton*>> *tables)
     : QDialog(parent)
     , ui(new Ui::SeatParty)
 {
@@ -21,15 +22,17 @@ SeatParty::~SeatParty()
 
 void SeatParty::on_confirmButton_clicked()
 {
-    bool flag, selectedTableIsOpen = false;
-    int table_nbr = (ui->input->toPlainText()).toInt(&flag);
-
+    bool flag;
+    bool selectedTableIsOpen = false;
+    int table_nbr = (ui->input->toPlainText()).toInt(&flag) - 1;
     // this line below makes sense, we promise. Don't think about it too hard.
-    if(_tables->at(table_nbr / 10).at(table_nbr - (table_nbr / 10)*10).getTableStatus() == TableStatus::OPEN)
+    int row = (table_nbr) / 10;
+    int col = (table_nbr - (table_nbr / 10) * 10);
+    if(_tables->at(row).at(col)->getTableStatus() == TableStatus::OPEN)
     {
+        QMessageBox::warning(this, "Congratulations", "We found it!");
         selectedTableIsOpen = true;
     }
-
 
     if (table_nbr == NULL)
     {
@@ -48,7 +51,6 @@ void SeatParty::on_confirmButton_clicked()
     else
     {
         this->setResult(table_nbr);
-        this->result();
         this->close();
     }
 }

@@ -9,8 +9,8 @@
 #include <QPushButton>
 #include <vector>
 #include <list>
-#include "..\..\Widgets\TableButton\TableButton.h"
-#include "..\..\Widgets\PartyLayoutWidget\PartyLayoutWidget.h"
+#include "../../Widgets/TableButton/TableButton.h"
+#include "../../Widgets/PartyLayoutWidget/PartyLayoutWidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,15 +22,21 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    //static MainWindow* getMainWindow() { return thisMainWindow; };
     ~MainWindow();
 
 private slots:
     void on_addToWaitlistButton_clicked();
-    void on_actionDelete_All_Parties_On_Waitlist_triggered();
 
+    void on_actionDelete_All_Parties_On_Waitlist_triggered();
     void on_actionDelete_All_Tables_triggered();
 
+    //PartyLayoutWidget Button Handlers
+    void editPartyButtonClicked(Party** partyToEdit, PartyLayoutWidget* partyLayoutWidgetToEdit);
+    void sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit);
+
 private:
+    //static MainWindow* thisMainWindow;
     QPushButton button;
     Ui::MainWindow *ui;
     std::vector<std::vector<TableButton*>> floormap;

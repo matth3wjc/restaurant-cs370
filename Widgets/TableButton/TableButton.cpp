@@ -11,6 +11,7 @@ TableButton::TableButton(int inTableNum, TableStatus inTableStatus)
     setMinimumSize(50, 50);
     tableNum = inTableNum;
     tableStatus = inTableStatus;
+    party = nullptr;
     connect(this, &TableButton::clicked, this, &TableButton::onClicked);
     if(tableStatus != TableStatus::DNE)
         setText(QString::number(tableNum, 10) + "\n" + getTableStatusQString(tableStatus));
@@ -19,6 +20,12 @@ TableButton::TableButton(int inTableNum, TableStatus inTableStatus)
         setText("+");
         setFlat(true);
     }
+}
+
+void TableButton::sitParty(Party* partyToSit)
+{
+    party = partyToSit;
+    setText(QString::number(tableNum, 10) + "\n" + party->getName());
 }
 
 void TableButton::onClicked()
