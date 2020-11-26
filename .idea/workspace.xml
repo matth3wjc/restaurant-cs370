@@ -9,14 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12391a7d-58c4-48a3-87c1-33c118debf23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/seatParty/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seatParty/SeatParty.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seatParty/SeatParty.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seatParty/SeatParty.ui" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seatParty/main.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seatParty/seatParty.pro" afterDir="false" />
-    </list>
+    <list default="true" id="12391a7d-58c4-48a3-87c1-33c118debf23" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +30,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Matt/Homework/CS 315/screenExample" />
     <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -49,6 +43,7 @@
       <updated>1604916783964</updated>
       <workItem from="1604916785698" duration="528000" />
       <workItem from="1605927573164" duration="89000" />
+      <workItem from="1606263313025" duration="26000" />
     </task>
     <servers />
   </component>
@@ -56,9 +51,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1604916967710">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="674" y="155" key="FileChooserDialogImpl" timestamp="1606263336721">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1604916967710" />
+    <state x="674" y="155" key="FileChooserDialogImpl/2560.433.1920.1030/0.0.2048.1112@0.0.2048.1112" timestamp="1606263336721" />
   </component>
 </project>

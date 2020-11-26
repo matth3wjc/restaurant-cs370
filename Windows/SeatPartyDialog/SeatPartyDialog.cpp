@@ -3,12 +3,14 @@
 
 #include "SeatPartyDialog.h"
 #include "ui_SeatPartyDialog.h"
+#include "../../TableStatusEnum.h"
+#include "../../Widgets/TableButton/TableButton.h"
 
-SeatParty::SeatParty(QWidget *parent, std::vector<int> **tables)
+SeatParty::SeatParty(QWidget *parent, std::vector<std::vector<TableButton>> *tables)
     : QDialog(parent)
     , ui(new Ui::SeatParty)
 {
-    table_nbrs = tables;
+    _tables = tables;
     ui->setupUi(this);
 }
 
@@ -21,15 +23,13 @@ void SeatParty::on_confirmButton_clicked()
 {
     bool flag, selectedTableIsOpen = false;
     int table_nbr = (ui->input->toPlainText()).toInt(&flag);
-    std::vector<int> *myVector = *table_nbrs;
 
-    for (int number : *myVector)
+    // this line below makes sense, we promise. Don't think about it too hard.
+    if(_tables->at(table_nbr / 10).at(table_nbr - (table_nbr / 10)*10).getTableStatus() == TableStatus::OPEN)
     {
-        if(table_nbr == number)
-        {
-            selectedTableIsOpen = true;
-        }
+        selectedTableIsOpen = true;
     }
+
 
     if (table_nbr == NULL)
     {
