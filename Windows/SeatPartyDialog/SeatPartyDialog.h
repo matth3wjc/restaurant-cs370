@@ -4,6 +4,8 @@
 #define SEATPARTY_H
 
 #include <QDialog>
+#include "../../TableStatusEnum.h"
+#include "../../Widgets/TableButton/TableButton.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class SeatParty; }
@@ -14,7 +16,7 @@ class SeatParty : public QDialog
     Q_OBJECT
 
 public:
-    SeatParty(QWidget *parent = nullptr, std::vector<int> **tables = nullptr);
+    SeatParty(QWidget *parent = nullptr, std::vector<std::vector<TableButton>> *tables = nullptr);
     ~SeatParty();
 
 private slots:
@@ -22,7 +24,7 @@ private slots:
     void on_cancelButton_clicked();
 
 private:
-    std::vector<int> **table_nbrs;
+    std::vector<std::vector<TableButton>> *_tables;
     Ui::SeatParty *ui;
 };
 #endif // SEATPARTY_H
