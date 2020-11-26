@@ -5,6 +5,7 @@
 
 #include <QPushButton>
 #include "../../TableStatusEnum.h"
+#include "../../Party.h"
 
 class TableButton : public QPushButton
 {
@@ -16,12 +17,14 @@ public:
 
     int getTableNum() {return tableNum;};
     TableStatus getTableStatus() {return tableStatus;};
+    void sitParty(Party* partyToSit);
 
     ~TableButton();
 
 public slots:
     void onClicked();
 private:
+    Party* party;
     int tableNum;
     TableStatus tableStatus;
 };

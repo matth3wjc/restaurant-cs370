@@ -15,9 +15,15 @@ class PartyLayoutWidget : public QGridLayout
 public:
     PartyLayoutWidget(Party* inParty);
     Party* getParty() { return party; };
+    void updateDisplay();
 
 public slots:
-    void onEditClicked();
+    void onEditButtonClicked();
+    void onSitButtonClicked();
+
+signals:
+    void editButtonClicked(Party** party, PartyLayoutWidget* partyLayoutWidgetToEdit);
+    void sitButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit);
 
 private:
     Party* party;

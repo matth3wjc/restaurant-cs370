@@ -61,8 +61,8 @@ void EditPartyDialog::on_confirmButton_clicked()
     }
     else
     {
-        Party *newParty = new Party(party_name, party_size);
-        *myParty = newParty;
+        (*myParty)->setName(party_name);
+        (*myParty)->setSize(party_size);
         this->accept();
         this->close();
     }
