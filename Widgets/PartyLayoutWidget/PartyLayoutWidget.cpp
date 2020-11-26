@@ -2,6 +2,7 @@
 
 #include "PartyLayoutWidget.h"
 #include <QString>
+#include <QPushButton>
 
 PartyLayoutWidget::PartyLayoutWidget(Party* inParty)
 {
@@ -18,6 +19,7 @@ PartyLayoutWidget::PartyLayoutWidget(Party* inParty)
     editButton.setText("Edit");
     editButton.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     addWidget(&editButton, 1, 0);
+    connect(this, &QPushButton::clicked, &editButton, &PartyLayoutWidget::onEditClicked);
 
     sitButton.setText("Sit");
     sitButton.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
@@ -26,4 +28,10 @@ PartyLayoutWidget::PartyLayoutWidget(Party* inParty)
     deleteButton.setText("Delete");
     deleteButton.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     addWidget(&deleteButton, 1, 2);
+}
+
+
+void PartyLayoutWidget::onEditClicked()
+{
+    int num = 5;
 }

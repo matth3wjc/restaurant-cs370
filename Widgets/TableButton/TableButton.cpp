@@ -25,7 +25,7 @@ void TableButton::onClicked()
 {
     switch(tableStatus)
     {
-        case TableStatus::DNE:
+    case TableStatus::DNE:
         {
             tableStatus = TableStatus::OPEN;
             setFlat(false);

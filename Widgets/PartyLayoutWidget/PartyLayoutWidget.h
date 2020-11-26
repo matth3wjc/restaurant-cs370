@@ -15,6 +15,10 @@ class PartyLayoutWidget : public QGridLayout
 public:
     PartyLayoutWidget(Party* inParty);
     Party* getParty() { return party; };
+
+public slots:
+    void onEditClicked();
+
 private:
     Party* party;
     QLabel nameLabel;
