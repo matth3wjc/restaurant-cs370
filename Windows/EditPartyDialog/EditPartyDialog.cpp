@@ -6,11 +6,12 @@
 #include <iostream>
 #include "../../Party.h"
 
-EditPartyDialog::EditPartyDialog(QWidget *parent, Party **party)
+EditPartyDialog::EditPartyDialog(QString& partyName, int& partySize, QWidget *parent)
     : QDialog(parent)
+    , myPartyName(partyName)
+    , myPartySize(partySize)
     , ui(new Ui::EditPartyDialog)
 {
-    myParty = party;
     ui->setupUi(this);
 
     // set warning text to red
@@ -61,8 +62,8 @@ void EditPartyDialog::on_confirmButton_clicked()
     }
     else
     {
-        (*myParty)->setName(party_name);
-        (*myParty)->setSize(party_size);
+        myPartyName = party_name;
+        myPartySize = party_size;
         this->accept();
         this->close();
     }

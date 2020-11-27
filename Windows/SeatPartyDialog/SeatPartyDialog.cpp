@@ -3,7 +3,7 @@
 
 #include "SeatPartyDialog.h"
 #include "ui_SeatPartyDialog.h"
-#include "../../TableStatusEnum.h"
+#include "../../TableStatusEnum/TableStatusEnum.h"
 #include "../../Widgets/TableButton/TableButton.h"
 #include <QMessageBox>
 

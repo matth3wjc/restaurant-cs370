@@ -1,7 +1,7 @@
 //Created by Ryan McKay
 
 #include "MainWindow.h"
-#include "TableStatusEnum.h"
+#include "../../TableStatusEnum/TableStatusEnum.h"
 #include <QDialog>
 #include <QMessageBox>
 #include "ui_MainWindow.h"
@@ -50,19 +50,21 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_addToWaitlistButton_clicked()
 {
-    Party* newParty = nullptr;
-    AddPartyDialog addPartyDialog(this, &newParty);
+
+    QString newPartyName;
+    int newPartySize;
+    AddPartyDialog addPartyDialog(newPartyName, newPartySize, this);
 
     if(addPartyDialog.exec())
     {
+        Party* newParty = new Party(newPartyName, newPartySize);
         PartyLayoutWidget* newPartyLayoutWidget = new PartyLayoutWidget(newParty);
-
-        //connect(&editButton, &QPushButton::clicked, this, &PartyLayoutWidget::onEditClicked);
-        connect(newPartyLayoutWidget, &PartyLayoutWidget::editButtonClicked, this, &MainWindow::editPartyButtonClicked);
-        connect(newPartyLayoutWidget, &PartyLayoutWidget::sitButtonClicked, this, &MainWindow::sitPartyButtonClicked);
         ++numOfParties;
         waitList.push_back(newPartyLayoutWidget);
         ui->WaitlistScrollAreaContents->addLayout(newPartyLayoutWidget);
+
+        connect(newPartyLayoutWidget, &PartyLayoutWidget::editButtonClicked, this, &MainWindow::editPartyButtonClicked);
+        connect(newPartyLayoutWidget, &PartyLayoutWidget::sitButtonClicked, this, &MainWindow::sitPartyButtonClicked);
     }
 }
 
@@ -90,11 +92,13 @@ void MainWindow::on_actionDelete_All_Tables_triggered()
     }
 }
 
-void MainWindow::editPartyButtonClicked(Party** partyToEdit, PartyLayoutWidget* partyLayoutWidgetToEdit)
+void MainWindow::editPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit)
 {
-    EditPartyDialog editPartyDialog(this, partyToEdit);
-    editPartyDialog.exec();
-    partyLayoutWidgetToEdit->updateDisplay();
+    QString newPartyName = partyLayoutWidgetToEdit->getParty()->getName();
+    int newPartySize = partyLayoutWidgetToEdit->getParty()->getSize();
+    EditPartyDialog editPartyDialog(newPartyName, newPartySize, this);
+    if(editPartyDialog.exec())
+        partyLayoutWidgetToEdit->updateParty(newPartyName, newPartySize);
 }
 
 void MainWindow::sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit)
@@ -104,7 +108,6 @@ void MainWindow::sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdi
     QMessageBox::warning(this, "Tester", "The value returned by SeatParty is: " + QString::number(tableNum));
     if(tableNum != 0)
     {
-        QMessageBox::warning(this, "Warning", "Time to crash");
         floormap.at(tableNum / 10).at((tableNum - (tableNum / 10) * 10))->sitParty(partyLayoutWidgetToEdit->getParty());
     }
 }

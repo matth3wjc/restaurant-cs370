@@ -32,7 +32,7 @@ private slots:
     void on_actionDelete_All_Tables_triggered();
 
     //PartyLayoutWidget Button Handlers
-    void editPartyButtonClicked(Party** partyToEdit, PartyLayoutWidget* partyLayoutWidgetToEdit);
+    void editPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit);
     void sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit);
 
 private:

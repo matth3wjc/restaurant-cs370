@@ -15,7 +15,7 @@ class AddPartyDialog : public QDialog
     Q_OBJECT
 
 public:
-    AddPartyDialog(QWidget *parent = nullptr, Party **party = nullptr);
+    AddPartyDialog(QString& partyName, int& partySize, QWidget *parent = nullptr);
     ~AddPartyDialog();
 
 private slots:
@@ -23,7 +23,8 @@ private slots:
     void on_cancelButton_clicked();
 
 private:
-    Party **myParty;
+    QString& myPartyName;
+    int& myPartySize;
     Ui::AddPartyDialog *ui;
 };
 #endif

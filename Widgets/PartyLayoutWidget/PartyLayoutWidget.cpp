@@ -35,7 +35,7 @@ PartyLayoutWidget::PartyLayoutWidget(Party* inParty)
 
 void PartyLayoutWidget::onEditButtonClicked()
 {
-    emit editButtonClicked(&party, this);
+    emit editButtonClicked(this);
 }
 
 void PartyLayoutWidget::onSitButtonClicked()
@@ -43,8 +43,10 @@ void PartyLayoutWidget::onSitButtonClicked()
     emit sitButtonClicked(this);
 }
 
-void PartyLayoutWidget::updateDisplay()
+void PartyLayoutWidget::updateParty(QString newName, int newSize)
 {
+    party->setName(newName);
+    party->setSize(newSize);
     nameLabel.setText("Name: " + party->getName());
     sizeLabel.setText("Size: " + QString::number(party->getSize(), 10));
 }
