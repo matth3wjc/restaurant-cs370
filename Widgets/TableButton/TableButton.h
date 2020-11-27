@@ -4,7 +4,7 @@
 #define TABLE_H
 
 #include <QPushButton>
-#include "../../TableStatusEnum.h"
+#include "../../TableStatusEnum/TableStatusEnum.h"
 #include "../../Party.h"
 
 class TableButton : public QPushButton

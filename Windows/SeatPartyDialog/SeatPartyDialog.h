@@ -4,7 +4,7 @@
 #define SEATPARTY_H
 
 #include <QDialog>
-#include "../../TableStatusEnum.h"
+#include "../../TableStatusEnum/TableStatusEnum.h"
 #include "../../Widgets/TableButton/TableButton.h"
 
 QT_BEGIN_NAMESPACE

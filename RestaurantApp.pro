@@ -17,6 +17,7 @@ SOURCES += \
     Database_Classes/TableDMA.cpp \
     Database_Classes/TableDMO.cpp \
     Database_Classes/databasemanagerarrayq.cpp \
+    TableStatusEnum/TableStatusEnumGlobalFunctions.cpp \
     Updaters/Updater.cpp \
     Widgets/PartyLayoutWidget/PartyLayoutWidget.cpp \
     Windows/AddPartyDialog/AddPartyDialog.cpp \
@@ -24,7 +25,6 @@ SOURCES += \
     Windows/SeatPartyDialog/SeatPartyDialog.cpp \
     Windows/MainWindow/MainWindow.cpp \
     Widgets/TableButton/TableButton.cpp \
-    globalFunctions.cpp \
     main.cpp
 
 HEADERS += \
@@ -36,15 +36,15 @@ HEADERS += \
     Database_Classes/TableDMO.hpp \
     Database_Classes/databasemanagerarrayq.h \
     Party.h \
-    TableStatusEnum.h \
+    TableStatusEnum/TableStatusEnum.h \
+    TableStatusEnum/TableStatusEnumGlobalFunctions.h \
     Updaters/Updater.h \
     Widgets/PartyLayoutWidget/PartyLayoutWidget.h \
     Windows/AddPartyDialog/AddPartyDialog.h \
     Windows/EditPartyDialog/EditPartyDialog.h \
     Windows/SeatPartyDialog/SeatPartyDialog.h \
     Windows/MainWindow/MainWindow.h \
-    Widgets/TableButton/TableButton.h \
-    globalFunctions.h
+    Widgets/TableButton/TableButton.h
 
 FORMS += \
     Windows/AddPartyDialog/AddPartyDialog.ui \

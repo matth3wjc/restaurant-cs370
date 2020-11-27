@@ -1,9 +1,9 @@
 //Created by Ryan McKay
 
 #include "TableButton.h"
-#include "../../globalFunctions.h"
-#include "../../TableStatusEnum.h"
-#include "../../globalFunctions.h"
+#include "../../TableStatusEnum/TableStatusEnumGlobalFunctions.h"
+#include "../../TableStatusEnum/TableStatusEnum.h"
+#include "../../TableStatusEnum/TableStatusEnumGlobalFunctions.h"
 
 TableButton::TableButton(int inTableNum, TableStatus inTableStatus)
 {

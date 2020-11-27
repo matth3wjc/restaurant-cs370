@@ -1,4 +1,4 @@
-#include "globalFunctions.h"
+#include "TableStatusEnumGlobalFunctions.h"
 #include <QString>
 #include <string>
 #include "TableStatusEnum.h"

@@ -13,15 +13,16 @@ class EditPartyDialog : public QDialog
     Q_OBJECT
 
 public:
-    EditPartyDialog(QWidget *parent = nullptr, Party **Party = nullptr);
+    EditPartyDialog(QString& partyName, int& partySize, QWidget *parent = nullptr);
     ~EditPartyDialog();
 
 private slots:
-void on_confirmButton_clicked();
-void on_cancelButton_clicked();
+    void on_confirmButton_clicked();
+    void on_cancelButton_clicked();
 
 private:
-    Party **myParty;
+    QString& myPartyName;
+    int& myPartySize;
     Ui::EditPartyDialog *ui;
 };
 #endif // EDITPARTYDIALOG_H
