@@ -9,7 +9,7 @@ class partyController{
         console.log('Controller HIT: partyController::parties')
         return new Promise((resolve, reject) => {
             chpConection.query({
-                sql:    `select p_name, p_size
+                sql:    `select *
                         from wait_list AS w
                         JOIN party AS p
                             ON p.p_id = w.p_id

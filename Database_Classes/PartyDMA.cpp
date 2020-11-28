@@ -8,9 +8,8 @@
 
 
 PartyDMA::PartyDMA() {
-    setFilePath("../restaurant-cs370/JSON_files/waitlist.txt");
-    fileDownload("http://localhost:3000/api/party/1");
-    for(auto i: *ListOfParties()){
+    setFilePath("../RestaurantApp/JSON_files/waitlist.txt");
+    for(auto i: *listOfParties()){
         i->_name();
     }
 }
@@ -28,12 +27,12 @@ bool PartyDMA::addParty(std::string name, int id, int size) {
     url.push_back(QString::number(size));
     //fileDownload();
 
-    ListOfParties()->push_back(party);
+    listOfParties()->push_back(party);
     return true;
 }
 
 bool PartyDMA::removeParty(int id) {
-    for (auto i : *ListOfParties()) {
+    for (auto i : *listOfParties()) {
         if (i->_id() == id) {
             //ListOfParties()->pop_back(i->_id());
             return true;

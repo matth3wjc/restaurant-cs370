@@ -11,6 +11,8 @@
 #include <list>
 #include "../../Widgets/TableButton/TableButton.h"
 #include "../../Widgets/PartyLayoutWidget/PartyLayoutWidget.h"
+#include "../../Database_Classes/PartyDMA.hpp"
+#include "../../Database_Classes/TableDMA.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,6 +28,10 @@ public:
     ~MainWindow();
 
 private slots:
+    //Database Slots
+    void databasePartySuccess();
+    void databaseTableSuccess();
+
     void on_addToWaitlistButton_clicked();
 
     void on_actionDelete_All_Parties_On_Waitlist_triggered();
@@ -36,7 +42,10 @@ private slots:
     void sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit);
 
 private:
-    //static MainWindow* thisMainWindow;
+    //Database loading
+    PartyDMA* partyDMArray = nullptr;
+    TableDMA* tableDMArray = nullptr;
+
     QPushButton button;
     Ui::MainWindow *ui;
     std::vector<std::vector<TableButton*>> floormap;
@@ -44,5 +53,7 @@ private:
     int numOfParties = 0;
     int floorMapWidth = 10;
     int floorMapHeight = 10;
+
+    void addPartyToWaitlist(Party* partyToAdd);
 };
 #endif // MAINWINDOW_H

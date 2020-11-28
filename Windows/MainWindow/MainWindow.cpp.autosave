@@ -60,10 +60,7 @@ void MainWindow::databasePartySuccess()
 
     for(auto partyToLoad : *(partyDMArray->listOfParties()))
     {
-        QString pName = QString::fromStdString(partyToLoad->_name());
-        QMessageBox::warning(this, "Tester",  pName);
         Party* newParty = new Party(QString::fromStdString(partyToLoad->_name()), partyToLoad->_size(), partyToLoad->_id());
-        addPartyToWaitlist(newParty);
     }
 
     disconnect(partyDMArray, &PartyDMA::ok, this, &MainWindow::databasePartySuccess);
@@ -89,7 +86,7 @@ void MainWindow::on_addToWaitlistButton_clicked()
     if(addPartyDialog.exec())
     {
         Party* newParty = new Party(newPartyName, newPartySize);
-        addPartyToWaitlist(newParty);
+
     }
 }
 
@@ -137,13 +134,4 @@ void MainWindow::sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdi
     }
 }
 
-void MainWindow::addPartyToWaitlist(Party* partyToAdd)
-{
-    PartyLayoutWidget* newPartyLayoutWidget = new PartyLayoutWidget(partyToAdd);
-    ++numOfParties;
-    waitList.push_back(newPartyLayoutWidget);
-    ui->WaitlistScrollAreaContents->addLayout(newPartyLayoutWidget);
-
-    connect(newPartyLayoutWidget, &PartyLayoutWidget::editButtonClicked, this, &MainWindow::editPartyButtonClicked);
-    connect(newPartyLayoutWidget, &PartyLayoutWidget::sitButtonClicked, this, &MainWindow::sitPartyButtonClicked);
-}
+void Main
