@@ -5,8 +5,7 @@
 #include "TableDMA.hpp"
 
 TableDMA::TableDMA(){
-    setFilePath("../restaurant-cs370/JSON_files/tables.txt");
-    fileDownload("http://localhost:3000/api/table");
+    setFilePath("../RestaurantApp/JSON_files/tables.txt");
 /*
     for (auto i: *listOfTables()){
         i->_status();

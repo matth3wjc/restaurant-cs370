@@ -19,11 +19,9 @@ public:
     DataBaseManagerObject *dataBaseManagerObject() {return new PartyDMO;}
     bool addParty(std::string name, int id, int size);
     bool removeParty(int id);
+    std::vector<PartyDMO*> *listOfParties() {return (std::vector<PartyDMO *> *) _listOfDataObjects;};
 
 private:
-    std::vector<PartyDMO*> *ListOfParties(){
-        return (std::vector<PartyDMO *> *) _listOfDataObjects;
-    }
 
 };
 

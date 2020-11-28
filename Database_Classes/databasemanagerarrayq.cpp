@@ -24,6 +24,7 @@ void DataBaseManagerArrayQ::replyFinished(QNetworkReply *reply)
 {
     if(reply->error() == QNetworkReply::NoError){
         QSaveFile newFile(filePath);
+        qDebug() << filePath;
         newFile.open(QIODevice::WriteOnly);
         newFile.write(reply->readAll());
         newFile.commit();
