@@ -3,7 +3,7 @@ const chpConnection = mySQL.createConnection({
         debug: false,
         host: 'localhost',
         user: 'root',
-        password: 'CircleTopEatNo84',
+        password: 'password',
         database: 'resturant'
 });
 
