@@ -24,7 +24,8 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    //static MainWindow* getMainWindow() { return thisMainWindow; };
+    int getFloorMapWidth() {return floorMapWidth;};
+    int getFloorMapHeight() {return floorMapHeight;};
     ~MainWindow();
 
 private slots:
@@ -55,5 +56,9 @@ private:
     int floorMapHeight = 10;
 
     void addPartyToWaitlist(Party* partyToAdd);
+    void removePartyFromWaitlist(PartyLayoutWidget* partyLayoutWidgetToDelete);
+
+    //temp
+    int lifeTimeNumOfParties = 0;
 };
 #endif // MAINWINDOW_H
