@@ -21,8 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("Restuarant Table and Waitlist Manager");
 
-    //thisMainWindow = this;
-
     //This removes the buttons, but keeps the ui layout ratio we want
     ui->previousFloormapButton->setVisible(false);
     ui->nextFloormapButton->setVisible(false);
@@ -50,7 +48,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(tableDMArray, &TableDMA::ok, this, &MainWindow::databaseTableSuccess);
     tableDMArray->fileDownload("http://localhost:3000/api/table");
 
-
 }
 
 //Slot functions
@@ -76,7 +73,20 @@ void MainWindow::databaseTableSuccess()
 
 MainWindow::~MainWindow()
 {
-    //Not yet created
+    deleteAllParties();
+
+    //Delete all the TableButtons
+    while(!floormap.empty())
+    {
+        std::vector<TableButton*> rowOfTables = floormap.back();
+        while(!rowOfTables.empty())
+        {
+            TableButton* tableToDelete = rowOfTables.back();
+            rowOfTables.pop_back();
+            delete tableToDelete;
+            tableToDelete = nullptr;
+        }
+    }
 }
 
 void MainWindow::on_addToWaitlistButton_clicked()
@@ -96,13 +106,7 @@ void MainWindow::on_addToWaitlistButton_clicked()
 
 void MainWindow::on_actionDelete_All_Parties_On_Waitlist_triggered()
 {
-    while(!waitList.empty())
-    {
-        PartyLayoutWidget* partyButtonToDelete = waitList.front();
-        waitList.pop_front();
-        ui->WaitlistScrollAreaContents->removeItem(partyButtonToDelete);
-        delete partyButtonToDelete;
-    }
+    deleteAllParties();
 }
 
 void MainWindow::on_actionDelete_All_Tables_triggered()
@@ -116,6 +120,7 @@ void MainWindow::on_actionDelete_All_Tables_triggered()
     }
 }
 
+//PartyLayoutWidget Button Handler Slots
 void MainWindow::editPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit)
 {
     QString newPartyName = partyLayoutWidgetToEdit->getParty()->getName();
@@ -131,9 +136,27 @@ void MainWindow::sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdi
     SeatParty seatPartyDialog(tableToSit, &floormap, this);
     if(seatPartyDialog.exec())
     {
-        //sit party
-        floormap.at((tableToSit - 1) / floorMapWidth).at(((tableToSit - 1) - ((tableToSit - 1) / floorMapWidth) * floorMapWidth))->sitParty(partyLayoutWidgetToEdit->getParty());
-        removePartyFromWaitlist(partyLayoutWidgetToEdit);
+        floormap.at((tableToSit - 1) / floorMapWidth)
+                .at(((tableToSit - 1) - ((tableToSit - 1) / floorMapWidth) * floorMapWidth))
+                ->sitParty(partyLayoutWidgetToEdit->getParty());
+        removePartyFromWaitlist(partyLayoutWidgetToEdit, false);
+    }
+}
+
+void MainWindow::deletePartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit)
+{
+    removePartyFromWaitlist(partyLayoutWidgetToEdit, true);
+}
+
+//Helper functions
+void MainWindow::deleteAllParties()
+{
+    while(!waitList.empty())
+    {
+        PartyLayoutWidget* partyButtonToDelete = waitList.front();
+        waitList.pop_front();
+        ui->WaitlistScrollAreaContents->removeItem(partyButtonToDelete);
+        delete partyButtonToDelete;
     }
 }
 
@@ -145,25 +168,28 @@ void MainWindow::addPartyToWaitlist(Party* partyToAdd)
 
     connect(newPartyLayoutWidget, &PartyLayoutWidget::editButtonClicked, this, &MainWindow::editPartyButtonClicked);
     connect(newPartyLayoutWidget, &PartyLayoutWidget::sitButtonClicked, this, &MainWindow::sitPartyButtonClicked);
+    connect(newPartyLayoutWidget, &PartyLayoutWidget::deleteButtonClicked, this, &MainWindow::deletePartyButtonClicked);
 }
 
-void MainWindow::removePartyFromWaitlist(PartyLayoutWidget* partyLayoutWidgetToDelete)
+void MainWindow::removePartyFromWaitlist(PartyLayoutWidget* partyLayoutWidgetToDelete, bool deleteParty)
 {
     auto partyIter = waitList.begin();
-    bool partyToBeDeletedFound = false;
-    while(!partyToBeDeletedFound && partyIter != waitList.end())
+    bool partyToBeRenamedFound = false;
+    while(!partyToBeRenamedFound && partyIter != waitList.end())
     {
         if((*partyIter)->getParty()->getID() == partyLayoutWidgetToDelete->getParty()->getID())
         {
             waitList.erase(partyIter);
-            partyToBeDeletedFound = true;
+            partyToBeRenamedFound = true;
         }
         else
             ++partyIter;
     }
-    if(partyToBeDeletedFound)
+    if(partyToBeRenamedFound)
     {
-        partyLayoutWidgetToDelete->unlinkPartyPointer();
+        if(deleteParty)
+            delete partyLayoutWidgetToDelete->getParty();
+        partyLayoutWidgetToDelete->setPartyPointerToNull();
         ui->WaitlistScrollAreaContents->removeItem(partyLayoutWidgetToDelete);
         delete partyLayoutWidgetToDelete;
     }

@@ -41,6 +41,7 @@ private slots:
     //PartyLayoutWidget Button Handlers
     void editPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit);
     void sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit);
+    void deletePartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit);
 
 private:
     //Database loading
@@ -55,8 +56,10 @@ private:
     int floorMapWidth = 10;
     int floorMapHeight = 10;
 
+    //Helper functions
+    void deleteAllParties();
     void addPartyToWaitlist(Party* partyToAdd);
-    void removePartyFromWaitlist(PartyLayoutWidget* partyLayoutWidgetToDelete);
+    void removePartyFromWaitlist(PartyLayoutWidget* partyLayoutWidgetToDelete, bool deleteParty);
 
     //temp
     int lifeTimeNumOfParties = 0;
