@@ -33,7 +33,6 @@ void SeatParty::on_confirmButton_clicked()
     int col = ((table_nbr - 1) - ((table_nbr - 1) / FLOORMAP_WIDTH) * FLOORMAP_WIDTH);
     if(_tables->at(row).at(col)->getTableStatus() == TableStatus::OPEN)
     {
-        QMessageBox::warning(this, "Congratulations", "We found it!");
         selectedTableIsOpen = true;
     }
 

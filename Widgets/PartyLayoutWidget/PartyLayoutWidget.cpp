@@ -30,6 +30,7 @@ PartyLayoutWidget::PartyLayoutWidget(Party* inParty)
     deleteButton.setText("Delete");
     deleteButton.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     addWidget(&deleteButton, 1, 2);
+    connect(&deleteButton, &QPushButton::clicked, this, &PartyLayoutWidget::onDeleteButtonClicked);
 }
 
 
@@ -41,6 +42,11 @@ void PartyLayoutWidget::onEditButtonClicked()
 void PartyLayoutWidget::onSitButtonClicked()
 {
     emit sitButtonClicked(this);
+}
+
+void PartyLayoutWidget::onDeleteButtonClicked()
+{
+    emit deleteButtonClicked(this);
 }
 
 void PartyLayoutWidget::updateParty(QString newName, int newSize)
@@ -58,4 +64,7 @@ PartyLayoutWidget::~PartyLayoutWidget()
         delete party;
         party = 0;
     }
+    disconnect(&editButton, &QPushButton::clicked, this, &PartyLayoutWidget::onEditButtonClicked);
+    disconnect(&sitButton, &QPushButton::clicked, this, &PartyLayoutWidget::onSitButtonClicked);
+    disconnect(&deleteButton, &QPushButton::clicked, this, &PartyLayoutWidget::onDeleteButtonClicked);
 }
