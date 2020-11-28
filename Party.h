@@ -14,6 +14,7 @@ public:
     void setName(QString inName) { name = inName; };
     int getSize() { return size; };
     void setSize(int inSize) { size = inSize; };
+    int getID() {return id;};
 private:
     QString name;
     int size;

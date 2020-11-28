@@ -57,11 +57,10 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::databasePartySuccess()
 {
     QMessageBox::warning(this, "Tester", "We are at party slot");
-
     for(auto partyToLoad : *(partyDMArray->listOfParties()))
     {
         QString pName = QString::fromStdString(partyToLoad->_name());
-        QMessageBox::warning(this, "Tester",  pName);
+        QMessageBox::warning(this, "Tester",  "Name of party: " + pName);
         Party* newParty = new Party(QString::fromStdString(partyToLoad->_name()), partyToLoad->_size(), partyToLoad->_id());
         addPartyToWaitlist(newParty);
     }
@@ -88,8 +87,10 @@ void MainWindow::on_addToWaitlistButton_clicked()
 
     if(addPartyDialog.exec())
     {
-        Party* newParty = new Party(newPartyName, newPartySize);
+        //lifeTimeNumOfParties is temp
+        Party* newParty = new Party(newPartyName, newPartySize, lifeTimeNumOfParties);
         addPartyToWaitlist(newParty);
+        ++lifeTimeNumOfParties;
     }
 }
 
@@ -102,8 +103,6 @@ void MainWindow::on_actionDelete_All_Parties_On_Waitlist_triggered()
         ui->WaitlistScrollAreaContents->removeItem(partyButtonToDelete);
         delete partyButtonToDelete;
     }
-
-    numOfParties = 0;
 }
 
 void MainWindow::on_actionDelete_All_Tables_triggered()
@@ -128,22 +127,49 @@ void MainWindow::editPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEd
 
 void MainWindow::sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit)
 {
-    SeatParty seatPartyDialog(this, &floormap);
-    int tableNum = seatPartyDialog.exec();
-    QMessageBox::warning(this, "Tester", "The value returned by SeatParty is: " + QString::number(tableNum));
-    if(tableNum != 0)
+    int tableToSit;
+    SeatParty seatPartyDialog(tableToSit, &floormap, this);
+    if(seatPartyDialog.exec())
     {
-        floormap.at(tableNum / 10).at((tableNum - (tableNum / 10) * 10))->sitParty(partyLayoutWidgetToEdit->getParty());
+        //sit party
+        floormap.at((tableToSit - 1) / floorMapWidth).at(((tableToSit - 1) - ((tableToSit - 1) / floorMapWidth) * floorMapWidth))->sitParty(partyLayoutWidgetToEdit->getParty());
+        removePartyFromWaitlist(partyLayoutWidgetToEdit);
     }
 }
 
 void MainWindow::addPartyToWaitlist(Party* partyToAdd)
 {
     PartyLayoutWidget* newPartyLayoutWidget = new PartyLayoutWidget(partyToAdd);
-    ++numOfParties;
     waitList.push_back(newPartyLayoutWidget);
     ui->WaitlistScrollAreaContents->addLayout(newPartyLayoutWidget);
 
     connect(newPartyLayoutWidget, &PartyLayoutWidget::editButtonClicked, this, &MainWindow::editPartyButtonClicked);
     connect(newPartyLayoutWidget, &PartyLayoutWidget::sitButtonClicked, this, &MainWindow::sitPartyButtonClicked);
+}
+
+void MainWindow::removePartyFromWaitlist(PartyLayoutWidget* partyLayoutWidgetToDelete)
+{
+    auto partyIter = waitList.begin();
+    bool partyToBeDeletedFound = false;
+    while(!partyToBeDeletedFound && partyIter != waitList.end())
+    {
+        if((*partyIter)->getParty()->getID() == partyLayoutWidgetToDelete->getParty()->getID())
+        {
+            waitList.erase(partyIter);
+            partyToBeDeletedFound = true;
+        }
+        else
+            ++partyIter;
+    }
+    if(partyToBeDeletedFound)
+    {
+        partyLayoutWidgetToDelete->unlinkPartyPointer();
+        ui->WaitlistScrollAreaContents->removeItem(partyLayoutWidgetToDelete);
+        delete partyLayoutWidgetToDelete;
+    }
+    else
+    {
+        QMessageBox::warning(this, "Error",  "The party you are trying to delete does not exist.");
+        exit(1);
+    }
 }

@@ -50,3 +50,12 @@ void PartyLayoutWidget::updateParty(QString newName, int newSize)
     nameLabel.setText("Name: " + party->getName());
     sizeLabel.setText("Size: " + QString::number(party->getSize(), 10));
 }
+
+PartyLayoutWidget::~PartyLayoutWidget()
+{
+    if(party)
+    {
+        delete party;
+        party = 0;
+    }
+}

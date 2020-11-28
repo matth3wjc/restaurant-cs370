@@ -16,7 +16,7 @@ class SeatParty : public QDialog
     Q_OBJECT
 
 public:
-    SeatParty(QWidget *parent = nullptr, std::vector<std::vector<TableButton*>> *tables = nullptr);
+    SeatParty(int& tableToSit, std::vector<std::vector<TableButton*>> *tables = nullptr, QWidget *parent = nullptr);
     ~SeatParty();
 
 private slots:
@@ -24,7 +24,9 @@ private slots:
     void on_cancelButton_clicked();
 
 private:
+    int& _tableToSit;
     std::vector<std::vector<TableButton*>> *_tables;
     Ui::SeatParty *ui;
+
 };
 #endif // SEATPARTY_H
