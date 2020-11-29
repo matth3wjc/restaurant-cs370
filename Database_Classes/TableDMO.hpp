@@ -17,7 +17,7 @@ public:
     std::string _status();
     int _nbr();
     int _seats();
-    void setStatus(std::string);
+    std::string setStatus(std::string);
 
 //private: temporary fix, add accesors
     std::string status;

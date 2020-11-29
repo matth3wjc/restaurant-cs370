@@ -34,7 +34,7 @@ int TableDMO::_seats(){
     return seats;
 }
 
-void TableDMO::setStatus(std::string stat){
+std::string TableDMO::setStatus(std::string stat){
     if(cachedStatus)
         return status;
     cachedStatus = true;
