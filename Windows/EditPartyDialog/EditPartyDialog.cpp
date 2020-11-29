@@ -13,6 +13,8 @@ EditPartyDialog::EditPartyDialog(QString& partyName, int& partySize, QWidget *pa
     , ui(new Ui::EditPartyDialog)
 {
     ui->setupUi(this);
+    ui->input_1->setText(myPartyName);
+    ui->input_2->setText(QString::number(myPartySize));
 
     // set warning text to red
     QPalette palette = ui->warning->palette();
