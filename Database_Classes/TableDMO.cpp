@@ -5,6 +5,9 @@
 #include "TableDMO.hpp"
 
 TableDMO::TableDMO(){
+    cachedNbr = false;
+    cachedSeats = false;
+    cachedStatus = false;
 }
 
 std::string TableDMO::_status(){
@@ -32,5 +35,9 @@ int TableDMO::_seats(){
 }
 
 void TableDMO::setStatus(std::string stat){
+    if(cachedStatus)
+        return status;
+    cachedStatus = true;
     status = valueForStringAttribute(stat);
+    return status;
 }
