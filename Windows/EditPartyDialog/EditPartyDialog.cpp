@@ -46,11 +46,15 @@ void EditPartyDialog::on_confirmButton_clicked()
         }
     }
 
-    if (party_name == NULL || party_size == NULL)
+    if (!flag){
+       ui->warning->setText("!! You must enter a valid integer value (1-99) as the party size.");
+       ui->input_2->clear();
+    }
+    else if (party_name == NULL || party_size == NULL)
     {
         ui->warning->setText("!! You must fill out the required information before you submit.");
     }
-    else if(!flag || party_size >= 100 || party_size < 0)
+    else if(party_size >= 100 || party_size < 0)
     {
         ui->warning->setText("!! You must enter a valid integer value (1-99) as the party size.");
         ui->input_2->clear();

@@ -16,6 +16,12 @@ SeatParty::SeatParty(int& tableToSit, std::vector<std::vector<TableButton*>> *ta
     , ui(new Ui::SeatParty)
 {
     ui->setupUi(this);
+
+    // set warning text to red
+    QPalette palette = ui->warning->palette();
+    palette.setColor(ui->warning->backgroundRole(), Qt::white);
+    palette.setColor(ui->warning->foregroundRole(), Qt::red);
+    ui->warning->setPalette(palette);
 }
 
 SeatParty::~SeatParty()
