@@ -29,6 +29,18 @@ void SeatParty::on_confirmButton_clicked()
     bool selectedTableIsOpen = false;
     int table_nbr = (ui->input->toPlainText()).toInt(&flag);    //table_nbr must be subtracted by one for calculations
 
+    if (table_nbr == NULL)
+    {
+        ui->warning->setText("!! You must fill out the required information before you submit.");
+        return;
+    }
+    else if(!flag)
+    {
+        ui->warning->setText("!! You must enter a valid integer value (1-100) as the table number.");
+        ui->input->clear();
+        return;
+    }
+
     int row = (table_nbr - 1) / FLOORMAP_WIDTH;
     int col = ((table_nbr - 1) - ((table_nbr - 1) / FLOORMAP_WIDTH) * FLOORMAP_WIDTH);
     if(_tables->at(row).at(col)->getTableStatus() == TableStatus::OPEN)
@@ -36,16 +48,8 @@ void SeatParty::on_confirmButton_clicked()
         selectedTableIsOpen = true;
     }
 
-    if (table_nbr == NULL)
-    {
-        ui->warning->setText("!! You must fill out the required information before you submit.");
-    }
-    else if(!flag)
-    {
-        ui->warning->setText("!! You must enter a valid integer value (1-100) as the table number.");
-        ui->input->clear();
-    }
-    else if(!selectedTableIsOpen)
+
+    if(!selectedTableIsOpen)
     {
         ui->warning->setText("!! The table number you entered is not open or does not exist! Please try again.");
         ui->input->clear();
