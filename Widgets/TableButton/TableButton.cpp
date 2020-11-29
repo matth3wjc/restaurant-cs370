@@ -25,7 +25,16 @@ TableButton::TableButton(int inTableNum, TableStatus inTableStatus)
 void TableButton::sitParty(Party* partyToSit)
 {
     party = partyToSit;
-    setText(QString::number(tableNum, 10) + "\n" + party->getName());
+    QString buttonText = QString::number(tableNum, 10) + "\n";
+    if(party->getName().size() <= 5)
+        setText(buttonText + party->getName());
+    else
+    {
+        QString truncatedName = party->getName();
+        truncatedName.truncate(5);
+        setText(buttonText + truncatedName + "...");
+    }
+
     tableStatus = TableStatus::SEATED;
 }
 
@@ -35,6 +44,7 @@ void TableButton::onClicked()
     {
     case TableStatus::DNE:
         {
+            //set to OPEN
             tableStatus = TableStatus::OPEN;
             setFlat(false);
             setText(QString::number(tableNum, 10) + "\n" + getTableStatusQString(tableStatus));
@@ -42,6 +52,7 @@ void TableButton::onClicked()
         break;
     case TableStatus::OPEN:
         {
+            //set to DNE
             tableStatus = TableStatus::DNE;
             setFlat(true);
             setText("+");
@@ -49,6 +60,7 @@ void TableButton::onClicked()
         break;
     case TableStatus::SEATED:
         {
+            //set to OPEN
             delete party;
             party = nullptr;
             tableStatus = TableStatus::OPEN;
