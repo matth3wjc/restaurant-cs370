@@ -9,6 +9,9 @@
 #include "Pair.hpp"
 
 PartyDMO::PartyDMO() {
+    cachedName = false;
+    cachedSize = false;
+    cachedId = false;
 }
 
 std::string PartyDMO::_name() {
