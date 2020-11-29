@@ -13,12 +13,26 @@ TableButton::TableButton(int inTableNum, TableStatus inTableStatus)
     tableStatus = inTableStatus;
     party = nullptr;
     connect(this, &TableButton::clicked, this, &TableButton::onClicked);
-    if(tableStatus != TableStatus::DNE)
-        setText(QString::number(tableNum, 10) + "\n" + getTableStatusQString(tableStatus));
-    else
+
+    switch(tableStatus)
     {
-        setText("+");
-        setFlat(true);
+    case TableStatus::DNE:
+        {
+            setText("+");
+            setFlat(true);
+        }
+        break;
+    case TableStatus::OPEN:
+        {
+            setFlat(false);
+            setText(QString::number(tableNum, 10) + "\n" + getTableStatusQString(tableStatus));
+        }
+        break;
+    case TableStatus::SEATED:
+        {
+
+        }
+        break;
     }
 }
 
@@ -36,6 +50,7 @@ void TableButton::sitParty(Party* partyToSit)
     }
 
     tableStatus = TableStatus::SEATED;
+    setToolTip(party->getName());
 }
 
 void TableButton::onClicked()
@@ -66,6 +81,7 @@ void TableButton::onClicked()
             tableStatus = TableStatus::OPEN;
             setFlat(false);
             setText(QString::number(tableNum, 10) + "\n" + getTableStatusQString(tableStatus));
+            setToolTip("");
         }
         break;
     }
@@ -83,6 +99,7 @@ void TableButton::deleteTable()
         tableStatus = TableStatus::DNE;
         setText("+");
         setFlat(true);
+        setToolTip("");
     }
 }
 
