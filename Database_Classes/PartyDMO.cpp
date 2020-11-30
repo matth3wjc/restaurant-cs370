@@ -34,7 +34,7 @@ int PartyDMO::_id() {
     if (cachedId)
         return id;
     cachedId = true;
-    id = valueForIntegerAttribute("p_id ");
+    id = valueForIntegerAttribute("p_id");
     return id;
 }
 
