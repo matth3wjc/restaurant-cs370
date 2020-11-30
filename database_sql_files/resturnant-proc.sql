@@ -105,3 +105,19 @@ BEGIN
 	DELETE FROM party WHERE p_id = _id;
 END $$
 DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS proc_sit_party;
+DELIMITER $$
+CREATE PROCEDURE proc_sit_party
+(
+_rest_id BIGINT,
+_id BIGINT,
+_table_nbr INT
+)
+BEGIN
+	UPDATE party SET `status` = "SEATED" WHERE p_id = _id;
+    DELETE FROM `table` WHERE nbr = _table_nbr AND rest_id = _rest_id;
+    INSERT INTO `table`(nbr, `status`, rest_id, p_id) VALUES (_table_nbr, "SEATED", 1, _id);
+END $$
+DELIMITER ;
