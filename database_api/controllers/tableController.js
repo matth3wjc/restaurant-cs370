@@ -82,6 +82,28 @@ class TableController {
                 ctx.body = err;
             });
     }
+
+    async updateTableStatus(ctx, next){
+        console.log('ControllerHIT: tableController::updateTableStatus')
+        return new Promise((resolve, reject) => {
+                chpConnection.query({
+                        sql: 'call proc_update_table_status( ?, ?, ?);',
+                        values: [ctx.params.id, ctx.params.nbr, ctx.params.status]
+                }, (err, res) => {
+                        if(err) {
+                                reject('Error querying CHP.test: ${err}');
+                        }
+                        ctx.body = res;
+                        ctx.status = 200;
+                        resolve();
+                });
+        })
+        .then(await next)
+        .catch (err => {
+                ctx.status = 500;
+                ctx.body = err;
+        });
+    }
 }
 
 module.exports = TableController;
