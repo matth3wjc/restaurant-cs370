@@ -30,8 +30,8 @@ public:
 
 private slots:
     //Database Slots
-    void databasePartySuccess();
-    void databaseTableSuccess();
+    void databasePartyLoadSuccess();
+    void databaseTableLoadSuccess();
 
     void on_addToWaitlistButton_clicked();
 

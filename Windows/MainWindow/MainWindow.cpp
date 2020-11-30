@@ -2,6 +2,7 @@
 
 #include "MainWindow.h"
 #include "../../TableStatusEnum/TableStatusEnum.h"
+#include "../../TableStatusEnum/TableStatusEnumGlobalFunctions.h"
 #include <QDialog>
 #include <QMessageBox>
 #include "ui_MainWindow.h"
@@ -32,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
         std::vector<TableButton*> newRow;
         for(int yIdx = 0; yIdx < floorMapHeight; ++yIdx)
         {
-            TableButton* table = new TableButton(tableNum, TableStatus::DNE);
+            TableButton* table = new TableButton(tableNum);
             newRow.push_back(table);
             ui->FloormapScrollAreaContents->addWidget(table, xIdx, yIdx);
             ++tableNum;
@@ -41,34 +42,60 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     partyDMArray = new PartyDMA();
-    connect(partyDMArray, &PartyDMA::ok, this, &MainWindow::databasePartySuccess);
+    connect(partyDMArray, &PartyDMA::ok, this, &MainWindow::databasePartyLoadSuccess);
     partyDMArray->fileDownload("http://localhost:3000/api/party/1");
 
     tableDMArray = new TableDMA();
-    connect(tableDMArray, &TableDMA::ok, this, &MainWindow::databaseTableSuccess);
+    connect(tableDMArray, &TableDMA::ok, this, &MainWindow::databaseTableLoadSuccess);
     tableDMArray->fileDownload("http://localhost:3000/api/table");
-
 }
 
 //Slot functions
-void MainWindow::databasePartySuccess()
+void MainWindow::databasePartyLoadSuccess()
 {
-    QMessageBox::warning(this, "Tester", "We are at party slot");
     for(auto partyToLoad : *(partyDMArray->listOfParties()))
     {
-        QString pName = QString::fromStdString(partyToLoad->_name());
-        QMessageBox::warning(this, "Tester",  "Name of party: " + pName);
+        //QString partyName = QString::fromStdString(partyToLoad->_name());
         Party* newParty = new Party(QString::fromStdString(partyToLoad->_name()), partyToLoad->_size(), partyToLoad->_id());
         addPartyToWaitlist(newParty);
     }
 
-    disconnect(partyDMArray, &PartyDMA::ok, this, &MainWindow::databasePartySuccess);
+    disconnect(partyDMArray, &PartyDMA::ok, this, &MainWindow::databasePartyLoadSuccess);
 }
 
-void MainWindow::databaseTableSuccess()
+void MainWindow::databaseTableLoadSuccess()
 {
-    QMessageBox::warning(this, "Tester", "We are at table slot");
-    disconnect(tableDMArray, &TableDMA::ok, this, &MainWindow::databaseTableSuccess);
+    QMessageBox::warning(this, "Tester", "We are at the databaseTableLoadSuccess slot.");
+    int row = 0;
+    int col = 0;
+
+
+    for(auto tableToLoad : *(tableDMArray->listOfTables()))
+    {
+        if(row == floorMapHeight)
+        {
+            //This is put here, so that if there are too many tables, instead of crashing, it only loads as many as it can fit.
+            QMessageBox::warning(this, "Database Error", "The number of tables in the database does not match the number of tables in the program.");
+            break;
+        }
+
+        TableStatus tableStatus = convertStringToTableStatus(tableToLoad->_status());
+        if(tableStatus == TableStatus::OPEN)
+            floormap.at(row).at(col)->setOpenFromDNE();
+        else if(tableStatus == TableStatus::SEATED)
+        {
+            Party* partyAtTable = new Party(QString::fromStdString(tableToLoad->_name()), tableToLoad->_size(), tableToLoad->_id());
+            floormap.at(row).at(col)->sitParty(partyAtTable);
+        }
+
+        ++col;
+        if(col == floorMapWidth)
+        {
+            col = 0;
+            ++row;
+        }
+    }
+    disconnect(tableDMArray, &TableDMA::ok, this, &MainWindow::databaseTableLoadSuccess);
 }
 
 MainWindow::~MainWindow()
