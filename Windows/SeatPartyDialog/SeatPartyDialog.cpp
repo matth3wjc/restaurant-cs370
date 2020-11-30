@@ -5,9 +5,8 @@
 #include "ui_SeatPartyDialog.h"
 #include "../../TableStatusEnum/TableStatusEnum.h"
 #include "../../Widgets/TableButton/TableButton.h"
+#include "../../CalcRowAndColGlobalFunctions/CalcRowAndColGlobalFunctions.h"
 #include <QMessageBox>
-
-const int FLOORMAP_WIDTH = 10;
 
 SeatParty::SeatParty(int& tableToSit, std::vector<std::vector<TableButton*>> *tables, QWidget *parent)
     : QDialog(parent)
@@ -47,8 +46,8 @@ void SeatParty::on_confirmButton_clicked()
         return;
     }
 
-    int row = (table_nbr - 1) / FLOORMAP_WIDTH;
-    int col = ((table_nbr - 1) - ((table_nbr - 1) / FLOORMAP_WIDTH) * FLOORMAP_WIDTH);
+    int row = calcRowFromTableNum(table_nbr);
+    int col = calcColFromTableNum(table_nbr);
     if(_tables->at(row).at(col)->getTableStatus() == TableStatus::OPEN)
     {
         selectedTableIsOpen = true;

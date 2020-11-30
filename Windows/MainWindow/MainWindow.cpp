@@ -14,6 +14,7 @@
 #include "../../Database_Classes/TableDMA.hpp"
 #include "../../Windows/EditPartyDialog/EditPartyDialog.h"
 #include "../../Windows/SeatPartyDialog/SeatPartyDialog.h"
+#include "../../CalcRowAndColGlobalFunctions/CalcRowAndColGlobalFunctions.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,16 +23,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("Restuarant Table and Waitlist Manager");
 
-    //This removes the buttons, but keeps the ui layout ratio we want
+    //This buttons are currently unused, but keeps the ui layout ratio we want
     ui->previousFloormapButton->setVisible(false);
     ui->nextFloormapButton->setVisible(false);
     ui->FloomapsComboBox->setVisible(false);
 
+    //Creates the collection of tables in floormap, all are set to DNE
     int tableNum = 1;
-    for(int xIdx = 0; xIdx < floorMapWidth; ++xIdx)
+    for(int xIdx = 0; xIdx < FLOORMAP_WIDTH; ++xIdx)
     {
         std::vector<TableButton*> newRow;
-        for(int yIdx = 0; yIdx < floorMapHeight; ++yIdx)
+        for(int yIdx = 0; yIdx < FLOORMAP_HEIGHT; ++yIdx)
         {
             TableButton* table = new TableButton(tableNum);
             newRow.push_back(table);
@@ -41,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
         floormap.push_back(newRow);
     }
 
+    //loading the parties, stored on the waitlist, from the database
     partyDMArray = new PartyDMA();
     connect(partyDMArray, &PartyDMA::ok, this, &MainWindow::databasePartyLoadSuccess);
     partyDMArray->fileDownload("http://localhost:3000/api/party/1");
@@ -48,51 +51,6 @@ MainWindow::MainWindow(QWidget *parent)
     tableDMArray = new TableDMA();
     connect(tableDMArray, &TableDMA::ok, this, &MainWindow::databaseTableLoadSuccess);
     tableDMArray->fileDownload("http://localhost:3000/api/table");
-}
-
-//Slot functions
-void MainWindow::databasePartyLoadSuccess()
-{
-    for(auto partyToLoad : *(partyDMArray->listOfParties()))
-    {
-        Party* newParty = new Party(QString::fromStdString(partyToLoad->_name()), partyToLoad->_size(), partyToLoad->_id());
-        addPartyToWaitlist(newParty);
-    }
-
-    disconnect(partyDMArray, &PartyDMA::ok, this, &MainWindow::databasePartyLoadSuccess);
-}
-
-void MainWindow::databaseTableLoadSuccess()
-{
-    int row = 0;
-    int col = 0;
-
-    for(auto tableToLoad : *(tableDMArray->listOfTables()))
-    {
-        if(row == floorMapHeight)
-        {
-            //This is put here, so that if there are too many tables, instead of crashing, it only loads as many as it can fit.
-            QMessageBox::warning(this, "Database Error", "The number of tables in the database does not match the number of tables in the program.");
-            break;
-        }
-
-        TableStatus tableStatus = convertStringToTableStatus(tableToLoad->_status());
-        if(tableStatus == TableStatus::OPEN)
-            floormap.at(row).at(col)->setOpenFromDNE();
-        else if(tableStatus == TableStatus::SEATED)
-        {
-            Party* partyAtTable = new Party(QString::fromStdString(tableToLoad->_name()), tableToLoad->_size(), tableToLoad->_id());
-            floormap.at(row).at(col)->sitParty(partyAtTable);
-        }
-
-        ++col;
-        if(col == floorMapWidth)
-        {
-            col = 0;
-            ++row;
-        }
-    }
-    disconnect(tableDMArray, &TableDMA::ok, this, &MainWindow::databaseTableLoadSuccess);
 }
 
 MainWindow::~MainWindow()
@@ -111,8 +69,67 @@ MainWindow::~MainWindow()
             tableToDelete = nullptr;
         }
     }
+
 }
 
+
+
+
+
+
+
+/* Database slot functions */
+void MainWindow::databasePartyLoadSuccess()
+{
+    for(auto partyToLoad : *(partyDMArray->listOfParties()))
+    {
+        Party* newParty = new Party(QString::fromStdString(partyToLoad->_name()), partyToLoad->_size(), partyToLoad->_id());
+        addPartyToWaitlist(newParty);
+    }
+
+    disconnect(partyDMArray, &PartyDMA::ok, this, &MainWindow::databasePartyLoadSuccess);
+}
+
+void MainWindow::databaseTableLoadSuccess()
+{
+    int row = 0;
+    int col = 0;
+
+    for(auto tableToLoad : *(tableDMArray->listOfTables()))
+    {
+        if(row == FLOORMAP_HEIGHT)
+        {
+            //This is put here, so that if there are too many tables, instead of crashing, it only loads as many as it can fit.
+            QMessageBox::warning(this, "Database Error", "The number of tables in the database does not match the number of tables in the program.");
+            break;
+        }
+
+        TableStatus tableStatus = convertStringToTableStatus(tableToLoad->_status());
+        if(tableStatus == TableStatus::OPEN)
+            floormap.at(row).at(col)->setOpenFromDNE();
+        else if(tableStatus == TableStatus::SEATED)
+        {
+            Party* partyAtTable = new Party(QString::fromStdString(tableToLoad->_name()), tableToLoad->_size(), tableToLoad->_id());
+            floormap.at(row).at(col)->sitParty(partyAtTable);
+        }
+
+        ++col;
+        if(col == FLOORMAP_WIDTH)
+        {
+            col = 0;
+            ++row;
+        }
+    }
+    disconnect(tableDMArray, &TableDMA::ok, this, &MainWindow::databaseTableLoadSuccess);
+}
+
+
+
+
+
+
+
+/* Native ui components' slot functions */
 void MainWindow::on_addToWaitlistButton_clicked()
 {
     QString newPartyName;
@@ -135,16 +152,25 @@ void MainWindow::on_actionDelete_All_Parties_On_Waitlist_triggered()
 
 void MainWindow::on_actionDelete_All_Tables_triggered()
 {
-    for(int xIdx = 0; xIdx < floorMapWidth; ++xIdx)
+    for(int xIdx = 0; xIdx < FLOORMAP_WIDTH; ++xIdx)
     {
-        for(int yIdx = 0; yIdx < floorMapHeight; ++yIdx)
+        for(int yIdx = 0; yIdx < FLOORMAP_HEIGHT; ++yIdx)
         {
             floormap.at(yIdx).at(xIdx)->deleteTable();
         }
     }
 }
 
-//PartyLayoutWidget Button Handler Slots
+
+
+
+
+
+
+/* Slots for PartyLayoutWidget's buttons
+    When one of PartyLayoutWidget's buttons is pressed, it emits a signal,
+    that is recieved by MainWindow, so it can handle them.                  */
+
 void MainWindow::editPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit)
 {
     QString newPartyName = partyLayoutWidgetToEdit->getParty()->getName();
@@ -160,8 +186,8 @@ void MainWindow::sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdi
     SeatParty seatPartyDialog(tableToSit, &floormap, this);
     if(seatPartyDialog.exec())
     {
-        floormap.at((tableToSit - 1) / floorMapWidth)
-                .at(((tableToSit - 1) - ((tableToSit - 1) / floorMapWidth) * floorMapWidth))
+        floormap.at(calcRowFromTableNum(tableToSit))
+                .at(calcColFromTableNum(tableToSit))
                 ->sitParty(partyLayoutWidgetToEdit->getParty());
         removePartyFromWaitlist(partyLayoutWidgetToEdit, false);
     }
@@ -172,7 +198,13 @@ void MainWindow::deletePartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetTo
     removePartyFromWaitlist(partyLayoutWidgetToEdit, true);
 }
 
-//Helper functions
+
+
+
+
+
+
+/* Helper functions */
 void MainWindow::deleteAllParties()
 {
     while(!waitList.empty())
@@ -196,6 +228,12 @@ void MainWindow::addPartyToWaitlist(Party* partyToAdd)
     connect(newPartyLayoutWidget, &PartyLayoutWidget::deleteButtonClicked, this, &MainWindow::deletePartyButtonClicked);
 }
 
+    //The bool var "deleteParty" determines whether to actually delete the party or not
+    //Set it to false when calling the function after moving a party to a table.
+    //      The above option simply deletes all references to the party.
+    //Set it to true when calling the function to delete party as a whole.
+    //
+    //In either case, the function deletes the passed PartyLayoutWidget
 void MainWindow::removePartyFromWaitlist(PartyLayoutWidget* partyLayoutWidgetToDelete, bool deleteParty)
 {
 
@@ -214,8 +252,15 @@ void MainWindow::removePartyFromWaitlist(PartyLayoutWidget* partyLayoutWidgetToD
     if(partyToBeRemovedFound)
     {
         if(deleteParty)
+        {
             delete partyLayoutWidgetToDelete->getParty();
-        partyLayoutWidgetToDelete->setPartyPointerToNull();
+            partyLayoutWidgetToDelete->setPartyPointerToNull();
+        }
+        else
+        {
+            partyLayoutWidgetToDelete->setPartyPointerToNull();
+        }
+
         ui->WaitlistScrollAreaContents->removeItem(partyLayoutWidgetToDelete);
         delete partyLayoutWidgetToDelete;
     }
