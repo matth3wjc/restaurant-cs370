@@ -1,5 +1,6 @@
 USE resturant;
 DROP TABLE IF EXISTS `table`;
+DROP TABLE IF EXISTS wait_list;
 DROP TABLE IF EXISTS party;
 DROP TABLE IF EXISTS resturant;
 SET GLOBAL log_bin_trust_function_creators = 1;
