@@ -55,7 +55,6 @@ void MainWindow::databasePartyLoadSuccess()
 {
     for(auto partyToLoad : *(partyDMArray->listOfParties()))
     {
-        //QString partyName = QString::fromStdString(partyToLoad->_name());
         Party* newParty = new Party(QString::fromStdString(partyToLoad->_name()), partyToLoad->_size(), partyToLoad->_id());
         addPartyToWaitlist(newParty);
     }
@@ -65,10 +64,8 @@ void MainWindow::databasePartyLoadSuccess()
 
 void MainWindow::databaseTableLoadSuccess()
 {
-    QMessageBox::warning(this, "Tester", "We are at the databaseTableLoadSuccess slot.");
     int row = 0;
     int col = 0;
-
 
     for(auto tableToLoad : *(tableDMArray->listOfTables()))
     {
@@ -191,6 +188,7 @@ void MainWindow::addPartyToWaitlist(Party* partyToAdd)
 {
     PartyLayoutWidget* newPartyLayoutWidget = new PartyLayoutWidget(partyToAdd);
     waitList.push_back(newPartyLayoutWidget);
+
     ui->WaitlistScrollAreaContents->addLayout(newPartyLayoutWidget);
 
     connect(newPartyLayoutWidget, &PartyLayoutWidget::editButtonClicked, this, &MainWindow::editPartyButtonClicked);
@@ -200,19 +198,20 @@ void MainWindow::addPartyToWaitlist(Party* partyToAdd)
 
 void MainWindow::removePartyFromWaitlist(PartyLayoutWidget* partyLayoutWidgetToDelete, bool deleteParty)
 {
+
     auto partyIter = waitList.begin();
-    bool partyToBeRenamedFound = false;
-    while(!partyToBeRenamedFound && partyIter != waitList.end())
+    bool partyToBeRemovedFound = false;
+    while(!partyToBeRemovedFound && partyIter != waitList.end())
     {
         if((*partyIter)->getParty()->getID() == partyLayoutWidgetToDelete->getParty()->getID())
         {
             waitList.erase(partyIter);
-            partyToBeRenamedFound = true;
+            partyToBeRemovedFound = true;
         }
         else
             ++partyIter;
     }
-    if(partyToBeRenamedFound)
+    if(partyToBeRemovedFound)
     {
         if(deleteParty)
             delete partyLayoutWidgetToDelete->getParty();
