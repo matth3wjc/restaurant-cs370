@@ -9,7 +9,6 @@
 #include <fstream>
 #include "DataBaseManagerObject.hpp"
 #include "Pair.hpp"
-//#include "Party.hpp"
 
 class TableDMO : public DataBaseManagerObject{
 public:
@@ -17,13 +16,15 @@ public:
     std::string _status();
     int _nbr();
     int _seats();
+    std::string _name();
+    int _size();
+    int _id();
     std::string setStatus(std::string);
 
 //private: temporary fix, add accesors
-    std::string status;
-    int nbr, seats;
-    bool cachedStatus, cachedNbr, cachedSeats;
-    //Party *party;
+    std::string status, name;
+    int nbr, seats, size, id;
+    bool cachedStatus, cachedNbr, cachedSeats, cachedName, cachedId, cachedSize;
 };
 
 
