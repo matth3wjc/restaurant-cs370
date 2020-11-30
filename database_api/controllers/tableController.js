@@ -10,7 +10,11 @@ class TableController {
     async Tables(ctx, next) {
         console.log('Controller HIT: tableController::tables');
         return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM `table`';
+            const query = `select nbr, t.\`status\`, p_name, p.p_id, p_size
+                            from \`table\` t 
+                            LEFT JOIN party p ON p.p_id = t.p_id
+                            where t.rest_id = 1
+                            ORDER BY nbr;`;
 
             chpConnection.query(query, (err, res) => {
                 if (err) {
