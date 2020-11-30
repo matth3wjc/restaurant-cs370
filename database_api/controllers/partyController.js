@@ -16,7 +16,7 @@ class partyController{
                     reject(`Error querying CHP.test: ${err}`);
                 }
 
-                ctx.body = res;
+                ctx.body = res[0].new_id;
                 ctx.status = 200;
                 
                 resolve();
