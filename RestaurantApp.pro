@@ -10,6 +10,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    CalcRowAndColGlobalFunctions/CalcRowAndColGlobalFunctions.cpp \
     Database_Classes/DataBaseManagerObject.cpp \
     Database_Classes/Pair.cpp \
     Database_Classes/PartyDMA.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
+    CalcRowAndColGlobalFunctions/CalcRowAndColGlobalFunctions.h \
     Database_Classes/DataBaseManagerObject.hpp \
     Database_Classes/Pair.hpp \
     Database_Classes/PartyDMA.hpp \

@@ -1,3 +1,5 @@
+//Created by Ryan McKay
+
 #ifndef GLOBALFUNCTIONS_H
 #define GLOBALFUNCTIONS_H
 
@@ -5,8 +7,8 @@
 #include <string>
 #include "TableStatusEnum.h"
 
-QString getTableStatusQString(TableStatus tableStatus);
-std::string getTableStatusString(TableStatus tableStatus);
-TableStatus convertStringToTableStatus(std::string tableStatus);
+extern QString getTableStatusQString(TableStatus tableStatus);
+extern std::string getTableStatusString(TableStatus tableStatus);
+extern TableStatus convertStringToTableStatus(std::string tableStatus);
 
 #endif // GLOBALFUNCTIONS_H

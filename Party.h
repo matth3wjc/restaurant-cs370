@@ -9,7 +9,6 @@ class Party
 {
 public:
     Party(QString inName, int inSize, int inId) {name = inName; size = inSize; id = inId;};
-    Party(QString inName, int inSize) {name = inName; size = inSize;};
     QString getName() { return name; };
     void setName(QString inName) { name = inName; };
     int getSize() { return size; };

@@ -1,3 +1,5 @@
+//Created by Ryan McKay
+
 #include "TableStatusEnumGlobalFunctions.h"
 #include <QString>
 #include <string>

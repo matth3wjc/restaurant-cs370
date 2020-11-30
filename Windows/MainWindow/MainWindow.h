@@ -5,6 +5,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QCloseEvent>
 #include <QMainWindow>
 #include <QPushButton>
 #include <vector>
@@ -24,17 +25,17 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    int getFloorMapWidth() {return floorMapWidth;};
-    int getFloorMapHeight() {return floorMapHeight;};
     ~MainWindow();
+    const static int FLOORMAP_WIDTH = 10;
+    const static int FLOORMAP_HEIGHT = 10;
 
 private slots:
     //Database Slots
     void databasePartyLoadSuccess();
     void databaseTableLoadSuccess();
 
+    //Native ui components' slots
     void on_addToWaitlistButton_clicked();
-
     void on_actionDelete_All_Parties_On_Waitlist_triggered();
     void on_actionDelete_All_Tables_triggered();
 
@@ -44,24 +45,24 @@ private slots:
     void deletePartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit);
 
 private:
-    //Database loading
-    PartyDMA* partyDMArray = nullptr;
-    TableDMA* tableDMArray = nullptr;
-
-    QPushButton button;
-    Ui::MainWindow *ui;
-    std::vector<std::vector<TableButton*>> floormap;
-    std::list<PartyLayoutWidget*> waitList;
-    int numOfParties = 0;
-    int floorMapWidth = 10;
-    int floorMapHeight = 10;
-
     //Helper functions
     void deleteAllParties();
     void addPartyToWaitlist(Party* partyToAdd);
     void removePartyFromWaitlist(PartyLayoutWidget* partyLayoutWidgetToDelete, bool deleteParty);
 
+    //Database loaders
+    PartyDMA* partyDMArray = nullptr;
+    TableDMA* tableDMArray = nullptr;
+
+    std::vector<std::vector<TableButton*>> floormap;
+
+
+    std::list<PartyLayoutWidget*> waitList;
+    int numOfParties = 0;
+
+    Ui::MainWindow *ui;
+
     //temp
-    int lifeTimeNumOfParties = 0;
+    int lifeTimeNumOfParties = 100;
 };
 #endif // MAINWINDOW_H
