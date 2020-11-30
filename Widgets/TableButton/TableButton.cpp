@@ -5,35 +5,23 @@
 #include "../../TableStatusEnum/TableStatusEnum.h"
 #include "../../TableStatusEnum/TableStatusEnumGlobalFunctions.h"
 
-TableButton::TableButton(int inTableNum, TableStatus inTableStatus)
+TableButton::TableButton(int inTableNum)
 {
     setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     setMinimumSize(50, 50);
     tableNum = inTableNum;
-    tableStatus = inTableStatus;
+    tableStatus = TableStatus::DNE;
     party = nullptr;
     connect(this, &TableButton::clicked, this, &TableButton::onClicked);
+    setText("+");
+    setFlat(true);
+}
 
-    switch(tableStatus)
-    {
-    case TableStatus::DNE:
-        {
-            setText("+");
-            setFlat(true);
-        }
-        break;
-    case TableStatus::OPEN:
-        {
-            setFlat(false);
-            setText(QString::number(tableNum, 10) + "\n" + getTableStatusQString(tableStatus));
-        }
-        break;
-    case TableStatus::SEATED:
-        {
-
-        }
-        break;
-    }
+void TableButton::setOpenFromDNE()
+{
+    tableStatus = TableStatus::OPEN;
+    setFlat(false);
+    setText(QString::number(tableNum, 10) + "\n" + getTableStatusQString(tableStatus));
 }
 
 void TableButton::sitParty(Party* partyToSit)
@@ -59,10 +47,7 @@ void TableButton::onClicked()
     {
     case TableStatus::DNE:
         {
-            //set to OPEN
-            tableStatus = TableStatus::OPEN;
-            setFlat(false);
-            setText(QString::number(tableNum, 10) + "\n" + getTableStatusQString(tableStatus));
+            setOpenFromDNE();
         }
         break;
     case TableStatus::OPEN:

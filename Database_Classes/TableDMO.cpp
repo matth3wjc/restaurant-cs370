@@ -3,6 +3,7 @@
 //
 
 #include "TableDMO.hpp"
+#include "PartyDMO.hpp"
 
 TableDMO::TableDMO(){
     cachedNbr = false;
@@ -13,7 +14,7 @@ TableDMO::TableDMO(){
     cachedId = false;
 }
 
-std::string PartyDMO::_name() {
+std::string TableDMO::_name() {
     if (cachedName)
         return name;
     cachedName = true;
@@ -21,7 +22,7 @@ std::string PartyDMO::_name() {
     return name;
 }
 
-int PartyDMO::_size() {
+int TableDMO::_size() {
     if (cachedSize)
         return size;
     cachedSize = true;
@@ -29,7 +30,7 @@ int PartyDMO::_size() {
     return size;
 }
 
-int PartyDMO::_id() {
+int TableDMO::_id() {
     if (cachedId)
         return id;
     cachedId = true;
