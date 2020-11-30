@@ -36,7 +36,7 @@ class TableController {
 
     // adds a new table
     async addTable(ctx, next) {
-        console.log('Controller HIT: tableController::openTabes')
+        console.log('Controller HIT: tableController::addTable')
         return new Promise((resolve, reject) => {
             chpConnection.query({
                     sql: 'INSERT INTO `table`(rest_id, nbr, `status`) VALUE(?, ?, ?)',
@@ -59,7 +59,7 @@ class TableController {
             });
     }
 
-    //updates all tables to closed
+    //updates all tables to open
     async openTables(ctx) {
         console.log('Controller HIT: tableController::openTabes')
         return new Promise((resolve, reject) => {
