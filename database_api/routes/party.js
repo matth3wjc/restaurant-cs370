@@ -5,6 +5,5 @@ const partyRouter = require('koa-router')({
 });
 
 partyRouter.get('/:id', partyController.parties);
-partyRouter.get('/:id/:name/:size', partyController.addParty, partyController.parties);
-
+partyRouter.get('/:id/:name/:size', partyController.addParty);
 module.exports = partyRouter;
