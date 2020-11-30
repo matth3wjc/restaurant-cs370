@@ -11,11 +11,10 @@ BEGIN
 
 	DECLARE _p_id BIGINT;
 
-	INSERT INTO party( p_name, p_size) VALUE (_p_name, _p_size);
-    INSERT INTO wait_list VALUE ( last_insert_id(), _rest_id);
-    SELECT p_id INTO _p_id
-		FROM wait_list
-        WHERE p_id = last_insert_id() AND rest_id = _rest_id;
+	INSERT INTO party( p_name, p_size, rest_id) VALUE (_p_name, _p_size, _rest_id);
+    	SELECT p_id INTO _p_id
+		FROM party
+        	WHERE p_id = last_insert_id();
     RETURN _p_id;
 END $$
 DELIMITER ;
