@@ -53,3 +53,55 @@ BEGIN
 	UPDATE `table` SET `status` = _new_status WHERE nbr = _nbr AND rest_id = _rest_id;
 END $$
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS proc_update_name;
+DELIMITER $$
+CREATE PROCEDURE proc_update_name
+(
+_id BIGINT,
+_new_name VARCHAR(30)
+)
+BEGIN
+	UPDATE party SET p_name = _new_name WHERE p_id = _id;
+END $$
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS proc_update_size;
+DELIMITER $$
+CREATE PROCEDURE proc_update_size
+(
+_id BIGINT,
+_new_size INT
+)
+BEGIN
+	UPDATE party SET p_size = _new_size WHERE p_id = _id;
+END $$
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS proc_update_name_and_size;
+DELIMITER $$
+CREATE PROCEDURE proc_update_name_and_size
+(
+_id BIGINT,
+_new_name VARCHAR(30),
+_new_size INT
+)
+BEGIN
+	UPDATE party SET p_name = _new_name WHERE p_id = _id;
+	UPDATE party SET p_size = _new_size WHERE p_id = _id;
+END $$
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS proc_delete_party;
+DELIMITER $$
+CREATE PROCEDURE proc_delete_party
+(
+_id BIGINT
+)
+BEGIN
+	DELETE FROM party WHERE p_id = _id;
+END $$
+DELIMITER ;
