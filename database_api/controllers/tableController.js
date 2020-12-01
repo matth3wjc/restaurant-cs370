@@ -82,6 +82,31 @@ class TableController {
                 ctx.body = err;
             });
     }
+    
+    
+    //updates all tables to close
+    async openTables(ctx) {
+        console.log('Controller HIT: tableController::closeTabes')
+        return new Promise((resolve, reject) => {
+            chpConnection.query({
+                    sql: 'UPDATE `table` SET `status` = "CLOSED" WHERE rest_id = ?',
+                    values: [ctx.params.id]
+            }, (err, res) => {
+                if (err) {
+                    reject(`Error querying CHP.test: ${err}`);
+                }
+
+                ctx.body = res;
+                ctx.status = 200;
+
+                resolve();
+            });
+        })
+            .catch(err => {
+                ctx.status = 500;
+                ctx.body = err;
+            });
+    }
 
     async updateTableStatus(ctx, next){
         console.log('ControllerHIT: tableController::updateTableStatus')
