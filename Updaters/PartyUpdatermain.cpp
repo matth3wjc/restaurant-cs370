@@ -45,7 +45,7 @@ void PartyUpdatermain::deleteParty(int id){
 void PartyUpdatermain::sitParty(int id, int tableNum){
     QString idAsQStringQ = QString::number(id);
     QString tableNumAsQStringQ = QString::number(tableNum);
-    QString url = "http://localhost:3000/api/party/" + idAsQStringQ + "/" + tableNumAsQStringQ + "/sitparty";
+    QString url = "http://localhost:3000/api/party/1/" + idAsQStringQ + "/" + tableNumAsQStringQ + "/sitparty";
     QUrl qrl(url);
     manager->get(QNetworkRequest(qrl));
 }
