@@ -85,7 +85,7 @@ class TableController {
     
     
     //updates all tables to close
-    async openTables(ctx) {
+    async closeTables(ctx) {
         console.log('Controller HIT: tableController::closeTabes')
         return new Promise((resolve, reject) => {
             chpConnection.query({
