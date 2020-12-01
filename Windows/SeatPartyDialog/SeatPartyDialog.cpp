@@ -34,12 +34,18 @@ void SeatParty::on_confirmButton_clicked()
     bool selectedTableIsOpen = false;
     int table_nbr = (ui->input->toPlainText()).toInt(&flag);    //table_nbr must be subtracted by one for calculations
 
-    if (table_nbr == NULL)
+    if(!flag)
+    {
+        ui->warning->setText("!! You must enter a valid integer value (1-100) as the table number.");
+        ui->input->clear();
+        return;
+    }
+    else if (table_nbr == NULL)
     {
         ui->warning->setText("!! You must fill out the required information before you submit.");
         return;
     }
-    else if(!flag)
+    else if(table_nbr > 100 || table_nbr < 1)
     {
         ui->warning->setText("!! You must enter a valid integer value (1-100) as the table number.");
         ui->input->clear();
