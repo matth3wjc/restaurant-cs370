@@ -5,7 +5,6 @@
 #include <fstream>
 #include "PartyDMO.hpp"
 #include "DataBaseManagerObject.hpp"
-#include "DataBaseManagerArray.hpp"
 #include "Pair.hpp"
 
 PartyDMO::PartyDMO() {
