@@ -15,6 +15,7 @@
 #include "../../Windows/EditPartyDialog/EditPartyDialog.h"
 #include "../../Windows/SeatPartyDialog/SeatPartyDialog.h"
 #include "../../CalcRowAndColGlobalFunctions/CalcRowAndColGlobalFunctions.h"
+#include "../../Updaters/PartyUpdatermain.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -51,6 +52,9 @@ MainWindow::MainWindow(QWidget *parent)
     tableDMArray = new TableDMA();
     connect(tableDMArray, &TableDMA::ok, this, &MainWindow::databaseTableLoadSuccess);
     tableDMArray->fileDownload("http://localhost:3000/api/table");
+
+    //Create the party database updater
+    partyUpdater = new PartyUpdatermain();
 }
 
 MainWindow::~MainWindow()
@@ -81,6 +85,7 @@ MainWindow::~MainWindow()
 /* Database slot functions */
 void MainWindow::databasePartyLoadSuccess()
 {
+    //QMessageBox::warning(this, "At Slot", "At databasePartyLoadSuccess");
     for(auto partyToLoad : *(partyDMArray->listOfParties()))
     {
         Party* newParty = new Party(QString::fromStdString(partyToLoad->_name()), partyToLoad->_size(), partyToLoad->_id());
@@ -92,18 +97,19 @@ void MainWindow::databasePartyLoadSuccess()
 
 void MainWindow::databaseTableLoadSuccess()
 {
+    //QMessageBox::warning(this, "At Slot", "At databaseTableLoadSuccess");
     int row = 0;
     int col = 0;
 
     for(auto tableToLoad : *(tableDMArray->listOfTables()))
     {
+        //QMessageBox::warning(this, "At Slot", QString::fromStdString(tableToLoad->_status()));
         if(row == FLOORMAP_HEIGHT)
         {
             //This is put here, so that if there are too many tables, instead of crashing, it only loads as many as it can fit.
             QMessageBox::warning(this, "Database Error", "The number of tables in the database does not match the number of tables in the program.");
             break;
         }
-
         TableStatus tableStatus = convertStringToTableStatus(tableToLoad->_status());
         if(tableStatus == TableStatus::OPEN)
             floormap.at(row).at(col)->setOpenFromDNE();
@@ -127,8 +133,6 @@ void MainWindow::databaseTableLoadSuccess()
 
 
 
-
-
 /* Native ui components' slot functions */
 void MainWindow::on_addToWaitlistButton_clicked()
 {
@@ -138,7 +142,6 @@ void MainWindow::on_addToWaitlistButton_clicked()
 
     if(addPartyDialog.exec())
     {
-        //lifeTimeNumOfParties is temp
         Party* newParty = new Party(newPartyName, newPartySize, lifeTimeNumOfParties);
         addPartyToWaitlist(newParty);
         ++lifeTimeNumOfParties;
@@ -177,7 +180,10 @@ void MainWindow::editPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEd
     int newPartySize = partyLayoutWidgetToEdit->getParty()->getSize();
     EditPartyDialog editPartyDialog(newPartyName, newPartySize, this);
     if(editPartyDialog.exec())
+    {
         partyLayoutWidgetToEdit->updateParty(newPartyName, newPartySize);
+        partyUpdater->updateNameAndSize(partyLayoutWidgetToEdit->getParty()->getID(), newPartyName, newPartySize);
+    }
 }
 
 void MainWindow::sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit)
@@ -186,6 +192,7 @@ void MainWindow::sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdi
     SeatParty seatPartyDialog(tableToSit, &floormap, this);
     if(seatPartyDialog.exec())
     {
+        partyUpdater->sitParty(partyLayoutWidgetToEdit->getParty()->getID(), tableToSit);
         floormap.at(calcRowFromTableNum(tableToSit))
                 .at(calcColFromTableNum(tableToSit))
                 ->sitParty(partyLayoutWidgetToEdit->getParty());
@@ -195,6 +202,7 @@ void MainWindow::sitPartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdi
 
 void MainWindow::deletePartyButtonClicked(PartyLayoutWidget* partyLayoutWidgetToEdit)
 {
+    partyUpdater->deleteParty(partyLayoutWidgetToEdit->getParty()->getID());
     removePartyFromWaitlist(partyLayoutWidgetToEdit, true);
 }
 

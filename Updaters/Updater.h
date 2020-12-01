@@ -9,7 +9,6 @@
 #include <QString>
 
 class Updater: public QObject {
-    QNetworkAccessManager *manager;
     Q_OBJECT
 private slots:
     void replyFinished(QNetworkReply *);
@@ -20,6 +19,7 @@ signals:
     void failure(QString err);
 public:
     Updater(QObject *parent = nullptr);
+    QNetworkAccessManager *manager;
     ~Updater();
 };
 

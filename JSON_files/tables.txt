@@ -1,21 +1,14 @@
 [
   {
-    "nbr": 1,
-    "status": "DNE",
-    "p_name": null,
-    "p_id": null,
-    "p_size": null
-  },
-  {
     "nbr": 2,
-    "status": "DNE",
+    "status": "OPEN",
     "p_name": null,
     "p_id": null,
     "p_size": null
   },
   {
     "nbr": 3,
-    "status": "DNE",
+    "status": "OPEN",
     "p_name": null,
     "p_id": null,
     "p_size": null
@@ -99,14 +92,14 @@
   },
   {
     "nbr": 15,
-    "status": "DNE",
-    "p_name": null,
-    "p_id": null,
-    "p_size": null
+    "status": "SEATED",
+    "p_name": "Luke",
+    "p_id": 3,
+    "p_size": 3
   },
   {
     "nbr": 16,
-    "status": "DNE",
+    "status": "OPEN",
     "p_name": null,
     "p_id": null,
     "p_size": null
@@ -169,14 +162,14 @@
   },
   {
     "nbr": 25,
-    "status": "DNE",
-    "p_name": null,
-    "p_id": null,
-    "p_size": null
+    "status": "SEATED",
+    "p_name": "Nicole",
+    "p_id": 5,
+    "p_size": 7
   },
   {
     "nbr": 26,
-    "status": "DNE",
+    "status": "OPEN",
     "p_name": null,
     "p_id": null,
     "p_size": null
@@ -295,13 +288,6 @@
   },
   {
     "nbr": 43,
-    "status": "DNE",
-    "p_name": null,
-    "p_id": null,
-    "p_size": null
-  },
-  {
-    "nbr": 44,
     "status": "DNE",
     "p_name": null,
     "p_id": null,
@@ -449,7 +435,7 @@
   },
   {
     "nbr": 65,
-    "status": "DNE",
+    "status": "OPEN",
     "p_name": null,
     "p_id": null,
     "p_size": null
@@ -519,7 +505,7 @@
   },
   {
     "nbr": 75,
-    "status": "DNE",
+    "status": "OPEN",
     "p_name": null,
     "p_id": null,
     "p_size": null
@@ -582,13 +568,6 @@
   },
   {
     "nbr": 84,
-    "status": "DNE",
-    "p_name": null,
-    "p_id": null,
-    "p_size": null
-  },
-  {
-    "nbr": 85,
     "status": "DNE",
     "p_name": null,
     "p_id": null,

@@ -5,7 +5,6 @@
 #include <string>
 #include "TableStatusEnum.h"
 
-//Add possible error handling
 
 QString getTableStatusQString(TableStatus tableStatus)
 {
@@ -27,7 +26,7 @@ QString getTableStatusQString(TableStatus tableStatus)
         return "Buss";
     case TableStatus::CLOSED:
         return "Closed";
-    }
+    } 
 }
 
 std::string convertTableStatusToString(TableStatus tableStatus)
