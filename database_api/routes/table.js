@@ -9,7 +9,8 @@ const tableRouter = require('koa-router')({
 
 tableRouter.get('/', tableController.Tables);
 tableRouter.get('/:id/:nbr/:status', tableController.addTable, tableController.Tables);
-tableRouter.get('/:id', tableController.openTables);
+tableRouter.get('/:id/open', tableController.openTables);
+tableRouter.get('/:id/close', tableController.closeTables);
 tableRouter.get('/:id/:nbr/:status/updatestatus', tableController.updateTableStatus);
 
 
