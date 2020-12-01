@@ -64,7 +64,7 @@ class TableController {
         console.log('Controller HIT: tableController::openTabes')
         return new Promise((resolve, reject) => {
             chpConnection.query({
-                    sql: 'UPDATE `table` SET `status` = "open" WHERE rest_id = ?',
+                    sql: 'UPDATE `table` SET `status` = "OPEN" WHERE rest_id = ?',
                     values: [ctx.params.id]
             }, (err, res) => {
                 if (err) {
