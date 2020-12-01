@@ -1,3 +1,5 @@
+// Created by Matthew Coady
+
 #ifndef EDITPARTYDIALOG_H
 #define EDITPARTYDIALOG_H
 
