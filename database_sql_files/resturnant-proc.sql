@@ -1,3 +1,5 @@
+-- Created by Luke Shoulders
+
 DROP FUNCTION IF EXISTS func_add_party;
 DELIMITER $$
 CREATE FUNCTION func_add_party

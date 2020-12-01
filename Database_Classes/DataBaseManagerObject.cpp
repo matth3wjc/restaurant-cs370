@@ -1,3 +1,5 @@
+//Luke Shoulders
+
 #include "DataBaseManagerObject.hpp"
 #include<iostream>
 

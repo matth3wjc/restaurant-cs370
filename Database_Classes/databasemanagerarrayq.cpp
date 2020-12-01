@@ -1,3 +1,5 @@
+//Luke Shoulders
+
 #include <QUrl>
 #include "databasemanagerarrayq.h"
 #include"DataBaseManagerObject.hpp"

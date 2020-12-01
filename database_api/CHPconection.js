@@ -1,3 +1,5 @@
+// Created by Luke Shoulders
+
 const mySQL = require('mysql');
 const chpConnection = mySQL.createConnection({
         debug: false,

@@ -1,3 +1,5 @@
+
+
 const chpConnection = require('../CHPconection');
 
 // Controller that interacts with tabels to retrieve data.
@@ -7,7 +9,7 @@ class TableController {
     }
 
     // Fetches all tables
-    async Tables(ctx, next) {
+    async Tables(ctx, next) {// Created by Luke Shoulders
         console.log('Controller HIT: tableController::tables');
         return new Promise((resolve, reject) => {
             const query = `select nbr, t.\`status\`, p_name, p.p_id, p_size
@@ -35,7 +37,7 @@ class TableController {
     }
 
     // adds a new table
-    async addTable(ctx, next) {
+    async addTable(ctx, next) {// Created by Luke Shoulders
         console.log('Controller HIT: tableController::addTable')
         return new Promise((resolve, reject) => {
             chpConnection.query({
@@ -82,33 +84,8 @@ class TableController {
                 ctx.body = err;
             });
     }
-    
-    
-    //updates all tables to close
-    async closeTables(ctx) {
-        console.log('Controller HIT: tableController::closeTabes')
-        return new Promise((resolve, reject) => {
-            chpConnection.query({
-                    sql: 'UPDATE `table` SET `status` = "CLOSED" WHERE rest_id = ?',
-                    values: [ctx.params.id]
-            }, (err, res) => {
-                if (err) {
-                    reject(`Error querying CHP.test: ${err}`);
-                }
 
-                ctx.body = res;
-                ctx.status = 200;
-
-                resolve();
-            });
-        })
-            .catch(err => {
-                ctx.status = 500;
-                ctx.body = err;
-            });
-    }
-
-    async updateTableStatus(ctx, next){
+    async updateTableStatus(ctx, next){// Created by Nicole Taketa
         console.log('ControllerHIT: tableController::updateTableStatus')
         return new Promise((resolve, reject) => {
                 chpConnection.query({

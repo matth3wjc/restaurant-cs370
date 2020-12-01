@@ -1,3 +1,5 @@
+-- Created by Luke Shoulders
+
 USE resturant;
 DROP TABLE IF EXISTS `table`;
 DROP TABLE IF EXISTS wait_list;

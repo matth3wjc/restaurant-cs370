@@ -1,3 +1,5 @@
+// Created by Nicole Taketa and Luke Shoulders
+
 const chpConection = require('../CHPconection');
 
 class partyController{
@@ -5,7 +7,7 @@ class partyController{
         console.log('party Controller Initialized!');
     }
 
-    async parties(ctx, next){
+    async parties(ctx, next){// Created by Luke Shoulders
         console.log('Controller HIT: partyController::parties')
         return new Promise((resolve, reject) => {
             chpConection.query({
@@ -30,7 +32,7 @@ class partyController{
     }
 
 
-    async addParty(ctx, next) {
+    async addParty(ctx, next) {// Created by Luke Shoulders
         console.log("Controller HIT: partyController::addParty");
         return new Promise((resolve, reject) => {
             chpConection.query({
@@ -54,7 +56,7 @@ class partyController{
         });
     }
 
-    async deleteParty(ctx, next) {
+    async deleteParty(ctx, next) {// Created by Nicole Taketa
         console.log("Controller HIT: partyController::deleteParty");
         return new Promise((resolve, reject) => {
             chpConection.query({
@@ -77,7 +79,7 @@ class partyController{
     }
 
 
-    async updateName(ctx, next) {
+    async updateName(ctx, next) {// Created by Nicole Taketa
         console.log("Controller HIT: partyController::updateName");
         return new Promise((resolve, reject) => {
             chpConection.query({
@@ -98,7 +100,7 @@ class partyController{
         });
     }
 
-    async updateSize(ctx, next) {
+    async updateSize(ctx, next) {// Created by Nicole Taketa
         console.log("Controller HIT: partyController::updateSize");
         return new Promise((resolve, reject) => {
             chpConection.query({
@@ -119,7 +121,7 @@ class partyController{
         });
     }
 
-    async updateNameAndSize(ctx, next) {
+    async updateNameAndSize(ctx, next) {// Created by Nicole Taketa
         console.log("Controller HIT: partyController::updateNameAndSize");
         return new Promise((resolve, reject) => {
             chpConection.query({
@@ -140,7 +142,7 @@ class partyController{
         });
     }
 
-    async sitParty(ctx, next) {
+    async sitParty(ctx, next) {// Created by Nicole Taketa
         console.log("Controller HIT: partyController::sitParty");
         return new Promise((resolve, reject) => {
             chpConection.query({

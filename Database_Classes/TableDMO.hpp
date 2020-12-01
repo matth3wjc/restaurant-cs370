@@ -1,5 +1,5 @@
 //
-// Created by nt101 on 11/2/2020.
+// Created by Nicole Taketa
 //
 
 #ifndef CS370_TableDMO_HPP

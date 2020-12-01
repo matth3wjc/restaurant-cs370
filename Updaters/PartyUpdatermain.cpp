@@ -1,3 +1,7 @@
+//
+// Created by Jorge Calderon
+//
+
 #include "PartyUpdatermain.h"
 
 #include<QString>
