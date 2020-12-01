@@ -26,6 +26,7 @@ void TableButton::setOpenFromDNE()
 
 void TableButton::sitParty(Party* partyToSit)
 {
+    setFlat(false);
     party = partyToSit;
     QString buttonText = QString::number(tableNum, 10) + "\n";
     if(party->getName().size() <= 5)

@@ -3,11 +3,11 @@
 
 #include<iostream>
 #include"Updater.h"
+#include<QString>
 
 
-class PartyUpdatermain: public Updater {
-   public:
-
+class PartyUpdatermain : public Updater {
+public:
     PartyUpdatermain();
     void updateName(int id, QString newName);
     void updateSize(int id, int newSize);
