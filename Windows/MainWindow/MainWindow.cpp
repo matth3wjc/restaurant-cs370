@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     QDir dirMaker;
-    dirMaker.mkpath("./JSON_Files");
+    dirMaker.mkpath("./JsonFiles");
 
     ui->setupUi(this);
     setWindowTitle("Restuarant Table and Waitlist Manager");

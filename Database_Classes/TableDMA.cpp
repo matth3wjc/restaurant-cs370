@@ -5,7 +5,7 @@
 #include "TableDMA.hpp"
 
 TableDMA::TableDMA(){
-    setFilePath("./JSON_files/tables.txt"); //Edited by Ryan McKay
+    setFilePath("./JsonFiles/tables.txt"); //Edited by Ryan McKay
 /*
     for (auto i: *listOfTables()){
         i->_status();
