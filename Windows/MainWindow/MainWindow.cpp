@@ -5,6 +5,7 @@
 #include "../../TableStatusEnum/TableStatusEnumGlobalFunctions.h"
 #include <QDialog>
 #include <QMessageBox>
+#include <QDir>
 #include "ui_MainWindow.h"
 #include "../../Widgets/TableButton/TableButton.h"
 #include "../../Widgets/PartyLayoutWidget/PartyLayoutWidget.h"
@@ -21,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    QDir dirMaker;
+    dirMaker.mkpath("./JSON_Files");
+
     ui->setupUi(this);
     setWindowTitle("Restuarant Table and Waitlist Manager");
 

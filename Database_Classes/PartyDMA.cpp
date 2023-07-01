@@ -8,7 +8,7 @@
 
 
 PartyDMA::PartyDMA() {
-    setFilePath("../RestaurantApp/JSON_files/waitlist.txt");
+    setFilePath("./JSON_Files/waitlist.txt"); //Edited by Ryan McKay
     for(auto i: *listOfParties()){
         i->_name();
     }
