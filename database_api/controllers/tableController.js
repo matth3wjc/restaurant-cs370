@@ -1,4 +1,4 @@
-
+// Created by Nicole Taketa and Luke Shoulders
 
 const chpConnection = require('../CHPconection');
 
