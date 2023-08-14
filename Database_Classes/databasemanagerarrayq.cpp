@@ -2,9 +2,9 @@
 
 #include <QUrl>
 #include "databasemanagerarrayq.h"
-#include"DataBaseManagerObject.hpp"
-#include<QSaveFile>
-#include<iostream>
+#include "DataBaseManagerObject.hpp"
+#include <QSaveFile>
+#include <iostream>
 
 DataBaseManagerArrayQ::DataBaseManagerArrayQ(QObject *parent)
     :QObject(parent){
