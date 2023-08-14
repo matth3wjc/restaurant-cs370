@@ -6,7 +6,7 @@ const partyRouter = require('koa-router')({
     prefix: '/party'
 });
 
-partyRouter.get('/:id', partyController.parties);// Created by Luke Shoulders
+partyRouter.get('/', partyController.parties);// Created by Luke Shoulders
 partyRouter.get('/:id/:name/:size/add', partyController.addParty);// Created by Luke Shoulders
 partyRouter.get('/:id/:name/updatename', partyController.updateName);// Created by Nicole Taketa
 partyRouter.get('/:id/:size/updatesize', partyController.updateSize);// Created by Nicole Taketa
