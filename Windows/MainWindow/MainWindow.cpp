@@ -51,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
     //loading the parties, stored on the waitlist, from the database
     partyDMArray = new PartyDMA();
     connect(partyDMArray, &PartyDMA::ok, this, &MainWindow::databasePartyLoadSuccess);
-    partyDMArray->fileDownload("http://localhost:3000/api/party");
+    partyDMArray->fileDownload("http://localhost:3000/api/party/1");
 
     tableDMArray = new TableDMA();
     connect(tableDMArray, &TableDMA::ok, this, &MainWindow::databaseTableLoadSuccess);
@@ -77,6 +77,7 @@ MainWindow::~MainWindow()
             tableToDelete = nullptr;
         }
     }
+
 }
 
 
