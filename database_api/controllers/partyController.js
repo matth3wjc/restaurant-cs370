@@ -11,7 +11,7 @@ class partyController{
         console.log('Controller HIT: partyController::parties')
         return new Promise((resolve, reject) => {
             chpConection.query({
-                sql:    'select p_id, p_name, p_size  from party where `status` = "WAITING";',
+                sql:    'select p_id, p_name, p_size from party where `status` = "WAITING";',
                 values: [ctx.params.id]
             }, (err, res) => {
                 if (err){
