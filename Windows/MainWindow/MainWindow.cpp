@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     dirMaker.mkpath("./JsonFiles");
 
     ui->setupUi(this);
-    setWindowTitle("Restuarant Table and Waitlist Manager");
+    setWindowTitle("Restaurant Table and Waitlist Manager");
 
     //This buttons are currently unused, but keeps the ui layout ratio we want
     ui->previousFloormapButton->setVisible(false);
