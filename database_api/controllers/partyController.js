@@ -1,6 +1,6 @@
 // Created by Nicole Taketa and Luke Shoulders
 
-const CHPconnection = require('../CHPconnection');
+const chpConnection = require('../CHPconnection');
 
 class partyController{
     constructor(){
@@ -10,7 +10,7 @@ class partyController{
     async parties(ctx, next){// Created by Luke Shoulders
         console.log('Controller HIT: partyController::parties')
         return new Promise((resolve, reject) => {
-            CHPconnection.query({
+            chpConnection.query({
                 sql:    'select p_id, p_name, p_size from party where `status` = "WAITING";',
                 values: [ctx.params.id]
             }, (err, res) => {
@@ -35,7 +35,7 @@ class partyController{
     async addParty(ctx, next) {// Created by Luke Shoulders
         console.log("Controller HIT: partyController::addParty");
         return new Promise((resolve, reject) => {
-            CHPconnection.query({
+            chpConnection.query({
                 sql: 'SELECT func_add_party( ?, ?, ? ) AS new_id;',
                 values: [ctx.params.id, ctx.params.name, ctx.params.size]
             }, (err, res) => {
@@ -59,7 +59,7 @@ class partyController{
     async deleteParty(ctx, next) {// Created by Nicole Taketa
         console.log("Controller HIT: partyController::deleteParty");
         return new Promise((resolve, reject) => {
-            CHPconnection.query({
+            chpConnection.query({
                 sql: 'call proc_delete_party( ?);',
                 values: [ctx.params.id]
             }, (err, res) => {
@@ -82,7 +82,7 @@ class partyController{
     async updateName(ctx, next) {// Created by Nicole Taketa
         console.log("Controller HIT: partyController::updateName");
         return new Promise((resolve, reject) => {
-            CHPconnection.query({
+            chpConnection.query({
                 sql: 'call proc_update_name( ?, ?);',
                 values:[ctx.params.id, ctx.params.name]
             }, (err, res) => {
@@ -103,7 +103,7 @@ class partyController{
     async updateSize(ctx, next) {// Created by Nicole Taketa
         console.log("Controller HIT: partyController::updateSize");
         return new Promise((resolve, reject) => {
-            CHPconnection.query({
+            chpConnection.query({
                 sql: 'call proc_update_size( ?, ?);',
                 values: [ctx.params.id, ctx.params.size]
             }, (err, res) => {
@@ -124,7 +124,7 @@ class partyController{
     async updateNameAndSize(ctx, next) {// Created by Nicole Taketa
         console.log("Controller HIT: partyController::updateNameAndSize");
         return new Promise((resolve, reject) => {
-            CHPconnection.query({
+            chpConnection.query({
                 sql: 'call proc_update_name_and_size( ?, ?, ?);',
                 values: [ctx.params.id, ctx.params.name, ctx.params.size]
             }, (err, res) => {
@@ -145,7 +145,7 @@ class partyController{
     async sitParty(ctx, next) {// Created by Nicole Taketa
         console.log("Controller HIT: partyController::sitParty");
         return new Promise((resolve, reject) => {
-            CHPconnection.query({
+            chpConnection.query({
                 sql: 'call proc_sit_party( ?, ?, ?);',
                 values: [ctx.params.restid, ctx.params.partyid, ctx.params.tablenbr]
             }, (err, res) => {
