@@ -1,6 +1,6 @@
+// Created by Nicole Taketa and Luke Shoulders
 
-
-const chpConnection = require('../CHPconection');
+const chpConnection = require('../CHPconnection');
 
 // Controller that interacts with tabels to retrieve data.
 class TableController {

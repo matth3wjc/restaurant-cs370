@@ -17,7 +17,7 @@ steps
 - enter 'node index.js'
 - the terminal should print:
 
-  ![Image](exeample.png)
+  ![Image](example.png)
   
  - don't exit the terminal
  - to make sure everything works search [http://localhost:3000/api/table/]("http://localhost:3000/api/table/") in your web browser

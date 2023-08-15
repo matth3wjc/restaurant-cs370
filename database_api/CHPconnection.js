@@ -6,7 +6,7 @@ const chpConnection = mySQL.createConnection({
         host: 'localhost',
         user: 'root',
         password: 'password',
-        database: 'resturant'
+        database: 'restaurant'
 });
 
 module.exports = chpConnection;

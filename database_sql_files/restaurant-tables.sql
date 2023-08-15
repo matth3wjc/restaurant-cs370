@@ -1,13 +1,13 @@
 -- Created by Luke Shoulders
 
-USE resturant;
+USE restaurant;
 DROP TABLE IF EXISTS `table`;
 DROP TABLE IF EXISTS wait_list;
 DROP TABLE IF EXISTS party;
-DROP TABLE IF EXISTS resturant;
+DROP TABLE IF EXISTS restaurant;
 SET GLOBAL log_bin_trust_function_creators = 1;
 
-CREATE TABLE resturant
+CREATE TABLE restaurant
 (
 	rest_name VARCHAR(30),
     rest_id BIGINT PRIMARY KEY AUTO_INCREMENT
@@ -23,7 +23,7 @@ CREATE TABLE party
     rest_id BIGINT,
     `status` VARCHAR(15) DEFAULT "WAITING",
     FOREIGN KEY (rest_id) 
-		REFERENCES resturant(rest_id)
+		REFERENCES restaurant(rest_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
@@ -37,7 +37,7 @@ CREATE TABLE `table`
     p_id BIGINT,
     PRIMARY KEY(nbr, rest_id),
     FOREIGN KEY (rest_id) 
-		REFERENCES resturant(rest_id)
+		REFERENCES restaurant(rest_id)
         ON DELETE CASCADE,
 	FOREIGN KEY (p_id)
 		REFERENCES party(p_id)
